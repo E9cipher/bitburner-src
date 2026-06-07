@@ -77,14 +77,14 @@ export enum CityName {
 }
 
 export enum LocationType {
-  Company = "Company",
-  Gym = "Gym",
+  Company = "Company", // earn reputation and money, join factions
+  Gym = "Gym", // train combat stats
   Hospital = "Hospital",
-  Slums = "Slums",
+  Slums = "Slums", // crimes
   Special = "Special", // This location has special options/activities (e.g., Bladeburner, Grafting, etc.)
-  StockMarket = "Stock Market",
-  TechVendor = "Tech Vendor",
-  TravelAgency = "Travel Agency",
-  University = "University",
-  Casino = "Casino",
+  StockMarket = "Stock Market", // WSE
+  TechVendor = "Tech Vendor", // buy RAM, cores, cloud servers
+  TravelAgency = "Travel Agency", // travel to other cities
+  University = "University", // train hack and cha
+  Casino = "Casino", // gambling
 }
