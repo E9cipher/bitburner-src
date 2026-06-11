@@ -35,6 +35,7 @@ import { HacknetNode } from "../../Hacknet/HacknetNode";
 import { HacknetServer } from "../../Hacknet/HacknetServer";
 import { GetServer } from "../../Server/AllServers";
 import { ArcadeRoot } from "../../Arcade/ui/ArcadeRoot";
+import { TheVoid } from "./TheVoid";
 import { currentNodeMults } from "../../BitNode/BitNodeMultipliers";
 import { canAccessBitNodeFeature, knowAboutBitverse } from "../../BitNode/BitNodeUtils";
 import { useRerender } from "../../ui/React/hooks";
@@ -462,7 +463,7 @@ export function SpecialLocation(props: SpecialLocationProps): React.ReactElement
     }
     case LocationName.Void: {
       // Reserved for special content such as easter eggs.
-      return <></>;
+      return <TheVoid />;
     }
     default:
       console.error(`Location ${props.loc.name} doesn't have any special properties`);

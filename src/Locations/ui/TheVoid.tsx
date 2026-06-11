@@ -3,9 +3,16 @@
  *
  * This subcomponent renders all the void's content
  */
-import * as React from "react";
-import Button from "@mui/material/Button";
+import React from "react";
+import { CorruptibleText } from "../../ui/React/CorruptibleText";
+import { Typography } from "@mui/material";
 
-import { Location } from "../Location";
+const TheVoid = () => {
+    return (
+        <Typography>
+            <CorruptibleText content={"You stand... nowhere? You have a strange feeling from this place, as it emits pure nothing"} spoiler={false} />
+        </Typography>
+    )
+}
 
-import { Player } from "@player";
+export { TheVoid };

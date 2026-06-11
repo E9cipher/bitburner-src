@@ -178,6 +178,11 @@ export const LocationsMetadata: IConstructorParams[] = [
     techVendorMinRam: 32,
   },
   {
+    city: CityName.Ishima,
+    types: [LocationType.Special],
+    name: LocationName.Void
+  },
+  {
     city: CityName.NewTokyo,
     infiltrationData: {
       maxClearanceLevel: 17,
