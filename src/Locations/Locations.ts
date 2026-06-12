@@ -106,8 +106,8 @@ Cities[CityName.Ishima].asciiArt = `
         \\ /         [nova medical]  /      4/30 \\                             
       49 x                         A             \\        H                    
         / \\                       /               \\                           
-       /   \\    [travel agency]  F                 o 31    [TheVoid]                    
-      /     \\           51      /                                              
+       /   \\    [travel agency]  F                 o 31                        
+      /     \\           51      /                                     I [the void]
      /       o----B------x-----o                                                
     o      50                  52                                               
               [omega soft.]                                                     

@@ -177,11 +177,7 @@ export const LocationsMetadata: IConstructorParams[] = [
     techVendorMaxRam: 512,
     techVendorMinRam: 32,
   },
-  {
-    city: CityName.Ishima,
-    types: [LocationType.Special],
-    name: LocationName.Void
-  },
+
   {
     city: CityName.NewTokyo,
     infiltrationData: {
@@ -449,23 +445,23 @@ export const LocationsMetadata: IConstructorParams[] = [
     types: [LocationType.StockMarket],
   },
   {
-    city: CityName.Chongqing,
-    name: LocationName.ChongqingChurchOfTheMachineGod,
-    types: [LocationType.Special],
-  },
-  {
     city: CityName.Ishima,
     name: LocationName.IshimaGlitch,
     types: [LocationType.Special],
   },
   {
-    city: CityName.Chongqing,
-    name: LocationName.ChongqingShadowedWalkway,
+    city: CityName.Ishima,
+    name: LocationName.Void,
     types: [LocationType.Special],
   },
   {
-    city: null,
-    name: LocationName.Void,
+    city: CityName.Chongqing,
+    name: LocationName.ChongqingChurchOfTheMachineGod,
+    types: [LocationType.Special],
+  },
+  {
+    city: CityName.Chongqing,
+    name: LocationName.ChongqingShadowedWalkway,
     types: [LocationType.Special],
   },
 ];

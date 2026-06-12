@@ -77,7 +77,7 @@ export enum CityName {
 }
 
 export enum LocationType {
-  Company = "Company", // earn reputation and money, join factions
+  Company = "Company", // earn reputation and money, join corporative factions
   Gym = "Gym", // train combat stats
   Hospital = "Hospital",
   Slums = "Slums", // crimes
