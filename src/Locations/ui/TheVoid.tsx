@@ -12,6 +12,12 @@ const TheVoid = () => {
   const shouldShowSpolierPage = true;
   const SpoilerContainer = () => {
     const msg = "This is an example message showing the use of the alert.";
+    const allItems = [
+      {name: "Money", type: "money", amount: 2e6, chance: 0.4},
+      {name: "Augmentation", type: "aug", amount: 2, chance: 0.2},
+      {name: "Nothing", type: "nothing", amount: 1, chance: 0.4}
+    ];
+    const gift = Math.random()
     return (
       <>
         <Typography>You have the following contents avaliable:</Typography>
