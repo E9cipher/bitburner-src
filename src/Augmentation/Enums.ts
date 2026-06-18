@@ -101,6 +101,8 @@ export enum AugmentationName {
   Primer = "The Illustrated Primer",
   SocialDynamo = "Social Dynamics Processor",
   Wit = "Neural Wit Amplifier",
+  NullishDopamine = "Nullish Dopamine Implant",
+  QuantumManipulation = "Quantum Manipulation",
   // UnnamedAug2 = "UnnamedAug2",
 
   // Bladeburner augs

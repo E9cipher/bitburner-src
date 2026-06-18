@@ -1333,6 +1333,22 @@ export const Augmentations: Record<AugmentationName, Augmentation> = (() => {
       charisma: 1.2,
       factions: [FactionName.ClarkeIncorporated],
     },
+    [AugmentationName.NullishDopamine]: {
+      repCost: 0,
+      moneyCost: 0,
+      info:
+        "A small implant is inserted into the brain to " +
+        "control dopamine injections and prevent the brain " +
+        "from any distractions.",
+      hacking_exp: 1.25,
+      strength_exp: 1.15,
+      defense_exp: 1.15,
+      dexterity_exp: 1.15,
+      agility_exp: 1.15,
+      charisma_exp: 1.15,
+      isSpecial: true,
+      factions: [],
+    },
     // === O === //
     [AugmentationName.OmniTekInfoLoad]: {
       repCost: 6.25e5,
@@ -1478,6 +1494,17 @@ export const Augmentations: Record<AugmentationName, Augmentation> = (() => {
       hacking_chance: 2.5,
       hacking_money: 4,
       factions: [FactionName.Illuminati],
+    },
+    [AugmentationName.QuantumManipulation]: {
+      repCost: 0,
+      moneyCost: 0,
+      info:
+        "Quantum subparticles are inserted into your brain, powering the " +
+        "dorment area of the brain that can handle quantum events.",
+      hacking: 1.3,
+      hacking_exp: 1.35,
+      isSpecial: true,
+      factions: [],
     },
     // === R === //
     // === S === //
