@@ -540,6 +540,11 @@
       "ID": "TRUE_RECURSION",
       "Name": "Exploit: true recursion",
       "Description": "Beat BN1 in megabyteburner 2000."
+    },
+    "THEVOID": {
+      "ID": "THEVOID",
+      "Name": "The Void",
+      "Description": "Access The Void."
     }
   }
 }
