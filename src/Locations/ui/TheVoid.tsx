@@ -22,7 +22,7 @@ const TheVoid = () => {
     { name: "Augmentation", type: "aug", augsType: AugmentationName.QuantumManipulation, chance: 0.1 },
     { name: "Nothing", type: "nothing", amount: 1, chance: 0.3 },
   ];
-  function spinChances(): voidRandomItem {
+  function spinChances(): voidRandomItem | undefined {
     const total = allItems.reduce((sum, item) => sum + item.chance, 0);
   const rand = Math.random() * total;
 
