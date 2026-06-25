@@ -14,9 +14,12 @@ const TheVoid = () => {
   const shouldShowSpolierPage = true;
   interface voidRandomItem {
   name: string;
+  type: "money" | "aug" | "nothing";
+  augsType?: AugmentationName;
+  amount?: number;
   chance: number;
 } 
-  const allItems = [
+  const allItems: voidRandomItem[] = [
     { name: "Money", type: "money", amount: 2e6, chance: 0.4 },
     { name: "Augmentation", type: "aug", augsType: AugmentationName.NullishDopamine, chance: 0.2 },
     { name: "Augmentation", type: "aug", augsType: AugmentationName.QuantumManipulation, chance: 0.1 },
