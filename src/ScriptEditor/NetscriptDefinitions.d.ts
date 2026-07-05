@@ -849,6 +849,40 @@ interface BladeburnerCurAction {
   name: string;
 }
 
+/** @public */
+export type GangTaskNameEnumType = {
+  Unassigned: "Unassigned";
+
+  Ransomware: "Ransomware";
+  Phishing: "Phishing";
+  IdentityTheft: "Identity Theft";
+  DDoSAttacks: "DDoS Attacks";
+  PlantVirus: "Plant Virus";
+  FraudAndCounterfeiting: "Fraud & Counterfeiting";
+  MoneyLaundering: "Money Laundering";
+  Cyberterrorism: "Cyberterrorism";
+  EthicalHacking: "Ethical Hacking";
+
+  MugPeople: "Mug People";
+  DealDrugs: "Deal Drugs";
+  StrongarmCivilians: "Strongarm Civilians";
+  RunACon: "Run a Con";
+  ArmedRobbery: "Armed Robbery";
+  TraffickIllegalArms: "Traffick Illegal Arms";
+  ThreatenAndBlackmail: "Threaten & Blackmail";
+  HumanTrafficking: "Human Trafficking";
+  Terrorism: "Terrorism";
+  VigilanteJustice: "Vigilante Justice";
+
+  TrainCombat: "Train Combat";
+  TrainHacking: "Train Hacking";
+  TrainCharisma: "Train Charisma";
+  TerritoryWarfare: "Territory Warfare";
+};
+
+/** @public */
+type GangTaskName = _ValueOf<GangTaskNameEnumType>;
+
 /**
  * Gang general info.
  * @public
@@ -1173,8 +1207,13 @@ export type SleeveTask =
   | SleeveSupportTask
   | SleeveSynchroTask;
 
-/** Object representing a port. A port is a serialized queue.
- * @public */
+/**
+ * Object representing a port. A port is a serialized queue.
+ *
+ * All methods in this interface can be used while the ns instance is "busy" (they avoid the concurrency check), or even
+ * when it is dead.
+ * @public
+ */
 export interface NetscriptPort {
   /** Write data to a port.
    * @remarks
@@ -4565,6 +4604,21 @@ export interface Darknet {
    * @returns A {@link DarknetResult} object
    */
   connectToSession(host: string, password: string): DarknetResult;
+
+  /**
+   * Overloads a darknet server with feedback to lock it down. Similar to status link, it will no longer move
+   * or go offline, although servers connected to it may still move. However, it also loses all of its max ram,
+   * and no longer gives experience.
+   *
+   * This technique is sometimes used to sacrifice a new device that appears on the network to make
+   * it easier to probe it for weaknesses and develop scripts against it.
+   *
+   * @remarks
+   * RAM cost: 2 GB
+   *
+   * @param host - Hostname/IP of the target server.
+   */
+  freezeServer(host: string): DarknetResult;
 
   /**
    * Uses an exploit to extract log data from a server by sending a malformed heartbeat request.
@@ -8175,11 +8229,11 @@ export interface NS {
    * Returns an array with the filenames of all files on the specified server
    * (as strings). The returned array is sorted in alphabetic order.
    *
-   * @param host - Hostname/IP of the target server.
+   * @param host - Hostname/IP of the target server. Defaults to current server if not provided.
    * @param substring - A substring to search for in the filename.
    * @returns Array with the filenames of all files on the specified server.
    */
-  ls(host: string, substring?: string): string[];
+  ls(host?: string, substring?: string): string[];
 
   /**
    * List running scripts on a server.
@@ -8683,11 +8737,39 @@ export interface NS {
    * RAM cost: 0 GB
    *
    * Get a handle to a Netscript Port.
+   *
+   * All methods of the port handle can be used while the ns instance is "busy" (they avoid the concurrency check), or
+   * even when it is dead.
+   *
    * Ports are shared across all hosts and contents are reset on game restart.
    *
    * @param portNumber - Port number. Must be a positive integer.
    */
   getPortHandle(portNumber: number): NetscriptPort;
+
+  /**
+   * Check if a port is full.
+   * @remarks
+   * RAM cost: 0 GB
+   *
+   * Returns true if the port's data queue is full, and false otherwise.
+   * Ports are shared across all hosts and contents are reset on game restart.
+   *
+   * @param portNumber - Port number. Must be a positive integer.
+   */
+  isFullPort(portNumber: number): boolean;
+
+  /**
+   * Check if a port is empty.
+   * @remarks
+   * RAM cost: 0 GB
+   *
+   * Returns true if the port's data queue is empty, and false otherwise.
+   * Ports are shared across all hosts and contents are reset on game restart.
+   *
+   * @param portNumber - Port number. Must be a positive integer.
+   */
+  isEmptyPort(portNumber: number): boolean;
 
   /**
    * Delete a file.
@@ -9752,6 +9834,7 @@ type NSEnums = {
   FragmentType: FragmentEnumType;
   DarknetResponseCode: DarknetResponseCodeType;
   ProgramName: ProgramNameEnumType;
+  GangTaskName: GangTaskNameEnumType;
 };
 
 /**

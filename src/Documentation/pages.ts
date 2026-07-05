@@ -426,6 +426,7 @@ import nsDoc_bitburner_crimetask_type_md from "../../markdown/bitburner.crimetas
 import nsDoc_bitburner_crimetype_md from "../../markdown/bitburner.crimetype.md?raw";
 import nsDoc_bitburner_darknet_authenticate_md from "../../markdown/bitburner.darknet.authenticate.md?raw";
 import nsDoc_bitburner_darknet_connecttosession_md from "../../markdown/bitburner.darknet.connecttosession.md?raw";
+import nsDoc_bitburner_darknet_freezeserver_md from "../../markdown/bitburner.darknet.freezeserver.md?raw";
 import nsDoc_bitburner_darknet_getblockedram_md from "../../markdown/bitburner.darknet.getblockedram.md?raw";
 import nsDoc_bitburner_darknet_getdarknetinstability_md from "../../markdown/bitburner.darknet.getdarknetinstability.md?raw";
 import nsDoc_bitburner_darknet_getdepth_md from "../../markdown/bitburner.darknet.getdepth.md?raw";
@@ -670,6 +671,8 @@ import nsDoc_bitburner_gangmemberinstall_str_md from "../../markdown/bitburner.g
 import nsDoc_bitburner_gangotherinfoobject_md from "../../markdown/bitburner.gangotherinfoobject.md?raw";
 import nsDoc_bitburner_gangotherinfoobject_power_md from "../../markdown/bitburner.gangotherinfoobject.power.md?raw";
 import nsDoc_bitburner_gangotherinfoobject_territory_md from "../../markdown/bitburner.gangotherinfoobject.territory.md?raw";
+import nsDoc_bitburner_gangtaskname_md from "../../markdown/bitburner.gangtaskname.md?raw";
+import nsDoc_bitburner_gangtasknameenumtype_md from "../../markdown/bitburner.gangtasknameenumtype.md?raw";
 import nsDoc_bitburner_gangtaskstats_agiweight_md from "../../markdown/bitburner.gangtaskstats.agiweight.md?raw";
 import nsDoc_bitburner_gangtaskstats_basemoney_md from "../../markdown/bitburner.gangtaskstats.basemoney.md?raw";
 import nsDoc_bitburner_gangtaskstats_baserespect_md from "../../markdown/bitburner.gangtaskstats.baserespect.md?raw";
@@ -1067,6 +1070,8 @@ import nsDoc_bitburner_ns_hastorrouter_md from "../../markdown/bitburner.ns.hast
 import nsDoc_bitburner_ns_heart_md from "../../markdown/bitburner.ns.heart.md?raw";
 import nsDoc_bitburner_ns_httpworm_md from "../../markdown/bitburner.ns.httpworm.md?raw";
 import nsDoc_bitburner_ns_infiltration_md from "../../markdown/bitburner.ns.infiltration.md?raw";
+import nsDoc_bitburner_ns_isemptyport_md from "../../markdown/bitburner.ns.isemptyport.md?raw";
+import nsDoc_bitburner_ns_isfullport_md from "../../markdown/bitburner.ns.isfullport.md?raw";
 import nsDoc_bitburner_ns_islogenabled_md from "../../markdown/bitburner.ns.islogenabled.md?raw";
 import nsDoc_bitburner_ns_isrunning_md from "../../markdown/bitburner.ns.isrunning.md?raw";
 import nsDoc_bitburner_ns_kill_1_md from "../../markdown/bitburner.ns.kill_1.md?raw";
@@ -2050,6 +2055,7 @@ AllPages["nsDoc/bitburner.crimetask.type.md"] = nsDoc_bitburner_crimetask_type_m
 AllPages["nsDoc/bitburner.crimetype.md"] = nsDoc_bitburner_crimetype_md;
 AllPages["nsDoc/bitburner.darknet.authenticate.md"] = nsDoc_bitburner_darknet_authenticate_md;
 AllPages["nsDoc/bitburner.darknet.connecttosession.md"] = nsDoc_bitburner_darknet_connecttosession_md;
+AllPages["nsDoc/bitburner.darknet.freezeserver.md"] = nsDoc_bitburner_darknet_freezeserver_md;
 AllPages["nsDoc/bitburner.darknet.getblockedram.md"] = nsDoc_bitburner_darknet_getblockedram_md;
 AllPages["nsDoc/bitburner.darknet.getdarknetinstability.md"] = nsDoc_bitburner_darknet_getdarknetinstability_md;
 AllPages["nsDoc/bitburner.darknet.getdepth.md"] = nsDoc_bitburner_darknet_getdepth_md;
@@ -2294,6 +2300,8 @@ AllPages["nsDoc/bitburner.gangmemberinstall.str.md"] = nsDoc_bitburner_gangmembe
 AllPages["nsDoc/bitburner.gangotherinfoobject.md"] = nsDoc_bitburner_gangotherinfoobject_md;
 AllPages["nsDoc/bitburner.gangotherinfoobject.power.md"] = nsDoc_bitburner_gangotherinfoobject_power_md;
 AllPages["nsDoc/bitburner.gangotherinfoobject.territory.md"] = nsDoc_bitburner_gangotherinfoobject_territory_md;
+AllPages["nsDoc/bitburner.gangtaskname.md"] = nsDoc_bitburner_gangtaskname_md;
+AllPages["nsDoc/bitburner.gangtasknameenumtype.md"] = nsDoc_bitburner_gangtasknameenumtype_md;
 AllPages["nsDoc/bitburner.gangtaskstats.agiweight.md"] = nsDoc_bitburner_gangtaskstats_agiweight_md;
 AllPages["nsDoc/bitburner.gangtaskstats.basemoney.md"] = nsDoc_bitburner_gangtaskstats_basemoney_md;
 AllPages["nsDoc/bitburner.gangtaskstats.baserespect.md"] = nsDoc_bitburner_gangtaskstats_baserespect_md;
@@ -2691,6 +2699,8 @@ AllPages["nsDoc/bitburner.ns.hastorrouter.md"] = nsDoc_bitburner_ns_hastorrouter
 AllPages["nsDoc/bitburner.ns.heart.md"] = nsDoc_bitburner_ns_heart_md;
 AllPages["nsDoc/bitburner.ns.httpworm.md"] = nsDoc_bitburner_ns_httpworm_md;
 AllPages["nsDoc/bitburner.ns.infiltration.md"] = nsDoc_bitburner_ns_infiltration_md;
+AllPages["nsDoc/bitburner.ns.isemptyport.md"] = nsDoc_bitburner_ns_isemptyport_md;
+AllPages["nsDoc/bitburner.ns.isfullport.md"] = nsDoc_bitburner_ns_isfullport_md;
 AllPages["nsDoc/bitburner.ns.islogenabled.md"] = nsDoc_bitburner_ns_islogenabled_md;
 AllPages["nsDoc/bitburner.ns.isrunning.md"] = nsDoc_bitburner_ns_isrunning_md;
 AllPages["nsDoc/bitburner.ns.kill_1.md"] = nsDoc_bitburner_ns_kill_1_md;

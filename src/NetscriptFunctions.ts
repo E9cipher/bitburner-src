@@ -32,6 +32,7 @@ import {
   OrderType,
   BladeburnerActionType,
   SpecialBladeburnerActionTypeForSleeve,
+  GangTaskNameEnum,
 } from "@enums";
 import { PromptEvent } from "./ui/React/PromptManager";
 import { GetServer } from "./Server/AllServers";
@@ -138,6 +139,7 @@ export const enums: NSEnums = {
   FragmentType: FragmentTypeEnum,
   DarknetResponseCode: ResponseCodeEnum,
   ProgramName: CompletedProgramName,
+  GangTaskName: GangTaskNameEnum,
 };
 for (const val of Object.values(enums)) Object.freeze(val);
 Object.freeze(enums);
@@ -1143,6 +1145,14 @@ export const ns: InternalAPI<NSFull> = {
   peek: (ctx) => (_portNumber) => {
     const portHandle = helpers.portHandle(ctx, _portNumber);
     return portHandle.peek();
+  },
+  isFullPort: (ctx) => (_portNumber) => {
+    const portHandle = helpers.portHandle(ctx, _portNumber);
+    return portHandle.full();
+  },
+  isEmptyPort: (ctx) => (_portNumber) => {
+    const portHandle = helpers.portHandle(ctx, _portNumber);
+    return portHandle.empty();
   },
   clear: (ctx) => (_file) => {
     const path = helpers.filePath(ctx, "file", _file);
