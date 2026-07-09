@@ -141,6 +141,11 @@
       "Name": "The Secrets of the Dark Net",
       "Description": "Acquire SF15.1"
     },
+    "SF16.1": {
+      "ID": "SF16.1",
+      "Name": "The Need For a Boss",
+      "Description": "Acquire SF16.1"
+    },
     "MONEY_1Q": {
       "ID": "MONEY_1Q",
       "Name": "Here comes the money!",
@@ -545,6 +550,16 @@
       "ID": "THE_VOID",
       "Name": "The Void",
       "Description": "Visit The Void"
+    },
+    "THE_BOSS": {
+      "ID": "THE_WORLD_BOSS",
+      "Name": "The rulemaker",
+      "Description": "Be CEO, CTO or CSO in all companies"
+    },
+    "ALL_COMPANY_FACTIONS": {
+      "ID": "ALL_COMPANY_FACTIONS",
+      "Name": "A finger in every pie",
+      "Description": "Join all corporative factions"
     }
   }
 }

@@ -6,6 +6,7 @@ import {
   CorpUnlockName,
   FactionName,
   IndustryType,
+  JobName,
 } from "@enums";
 import { Skills } from "../Bladeburner/data/Skills";
 import { CONSTANTS } from "../Constants";
@@ -773,6 +774,26 @@ export const achievements: Record<AchievementId, Achievement> = {
     ...achievementData.THE_VOID,
     Icon: "the-void",
     Secret: true,
+    Condition: () => false,
+    NotInSteam: true,
+  },
+  THE_BOSS: {
+    ...achievementData.THE_BOSS,
+    Condition: () =>
+      (Player.jobs.ECorp &&
+        Player.jobs.MegaCorp &&
+        Player.jobs["Bachman & Associates"] &&
+        Player.jobs["Blade Industries"] &&
+        Player.jobs.NWO &&
+        Player.jobs["Clarke Incorporated"] &&
+        Player.jobs["OmniTek Incorporated"] &&
+        Player.jobs["Four Sigma"] &&
+        Player.jobs["KuaiGong International"] &&
+        Player.jobs["Fulcrum Technologies"]) === (JobName.software7 || JobName.business5 || JobName.securityEng),
+    NotInSteam: true,
+  },
+  ALL_COMPANY_FACTIONS: {
+    ...achievementData.ALL_COMPANY_FACTIONS,
     Condition: () => false,
     NotInSteam: true,
   },
