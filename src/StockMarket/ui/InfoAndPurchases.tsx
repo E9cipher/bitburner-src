@@ -20,6 +20,9 @@ import HelpIcon from "@mui/icons-material/Help";
 import CheckIcon from "@mui/icons-material/Check";
 import { StaticModal } from "../../ui/React/StaticModal";
 import { FactionName } from "@enums";
+import { Router } from "../../ui/GameRoot";
+import { Page } from "../../ui/Router";
+import { DocumentationLink } from "../../ui/React/DocumentationLink";
 
 interface IProps {
   rerender: () => void;
@@ -252,6 +255,9 @@ export function InfoAndPurchases(props: IProps): React.ReactElement {
         WARNING: When you reset after installing Augmentations, the Stock Market is reset. You will retain your WSE
         Account, access to the TIX API, and 4S Market Data access. However, all of your stock positions are lost, so
         make sure to sell your stocks before installing Augmentations!
+      </Typography>
+      <Typography>
+        <DocumentationLink page="basic/stockmarket.md">Stock Market Documentation</DocumentationLink>
       </Typography>
       <StaticModal open={helpOpen} onClose={() => setHelpOpen(false)}>
         <Typography>
