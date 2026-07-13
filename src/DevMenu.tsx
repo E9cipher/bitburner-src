@@ -19,7 +19,7 @@ import { BladeburnerDev } from "./DevMenu/ui/BladeburnerDev";
 import { GangDev } from "./DevMenu/ui/GangDev";
 import { CorporationDev } from "./DevMenu/ui/CorporationDev";
 import { CodingContractsDev } from "./DevMenu/ui/CodingContractsDev";
-import { StockMarketDev } from "./DevMenu/ui/StockMarketDev";
+import { setPlayerStockAccess, StockMarketAPIs, StockMarketDev } from "./DevMenu/ui/StockMarketDev";
 import { SleevesDev } from "./DevMenu/ui/SleevesDev";
 import { StanekDev } from "./DevMenu/ui/StanekDev";
 import { AchievementsDev } from "./DevMenu/ui/AchievementsDev";
@@ -67,7 +67,11 @@ export function DevMenuRoot(): React.ReactElement {
 
       <CodingContractsDev />
 
-      {canAccessStockMarket() && <StockMarketDev />}
+      {canAccessStockMarket() ? (
+        <StockMarketDev />
+      ) : (
+        (setPlayerStockAccess(StockMarketAPIs.hasWseAccount, true), (<StockMarketDev />))
+      )}
 
       {Player.sleeves.length > 0 && <SleevesDev />}
       {Player.augmentations.some((aug) => aug.name === AugmentationName.StaneksGift1) && <StanekDev />}

@@ -9,9 +9,22 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Money } from "../../ui/React/Money";
 import { dialogBoxCreate } from "../../ui/React/DialogBox";
-import { StockMarket as SM } from "../../StockMarket/StockMarket";
+import { deleteStockMarket, StockMarket as SM } from "../../StockMarket/StockMarket";
 import { Stock } from "../../StockMarket/Stock";
 import { AutoExpandAccordion } from "../../ui/AutoExpand/AutoExpandAccordion";
+import { Player } from "@player";
+
+export enum StockMarketAPIs {
+  hasWseAccount = "hasWseAccount",
+  hasTixApiAccess = "hasTixApiAccess",
+  has4SData = "has4SData",
+  has4SDataTixApi = "has4SDataTixApi",
+}
+
+export function setPlayerStockAccess(access: StockMarketAPIs, value: boolean): void {
+  Player[access] = value;
+  if (access === StockMarketAPIs.hasWseAccount && !value) deleteStockMarket();
+}
 
 export function StockMarketDev(): React.ReactElement {
   const [stockPrice, setStockPrice] = useState(0);
@@ -80,6 +93,7 @@ export function StockMarketDev(): React.ReactElement {
       </table>,
     );
   }
+
   return (
     <AutoExpandAccordion cacheKey="DEVMENU_StockMarketDev" unmountOnExit={true}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -115,6 +129,18 @@ export function StockMarketDev(): React.ReactElement {
             </tr>
           </tbody>
         </table>
+        <Button onClick={() => setPlayerStockAccess(StockMarketAPIs.hasWseAccount, !Player.hasWseAccount)}>
+          Toggle WSE Access
+        </Button>
+        <Button onClick={() => setPlayerStockAccess(StockMarketAPIs.hasTixApiAccess, !Player.hasTixApiAccess)}>
+          Toggle TIX API Access
+        </Button>
+        <Button onClick={() => setPlayerStockAccess(StockMarketAPIs.has4SData, !Player.has4SData)}>
+          Toggle 4S UI Access
+        </Button>
+        <Button onClick={() => setPlayerStockAccess(StockMarketAPIs.has4SDataTixApi, !Player.has4SDataTixApi)}>
+          Toggle 4S TIX API Access
+        </Button>
       </AccordionDetails>
     </AutoExpandAccordion>
   );

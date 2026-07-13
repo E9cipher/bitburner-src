@@ -99,7 +99,7 @@ function PurchaseWseAccountButton(props: IProps): React.ReactElement {
   }
 
   const cost = StockMarketConstants.WseAccountCost;
-  let tooltipTitle = "Let you trade stock via UI";
+  let tooltipTitle = "Lets you trade stock via UI";
   if (!Player.canAfford(cost)) {
     tooltipTitle = "You do not have enough money";
   }
@@ -142,7 +142,7 @@ function PurchaseTixApiAccessButton(props: IProps): React.ReactElement {
     );
   }
   const cost = StockMarketConstants.TixApiCost;
-  let tooltipTitle = "Let you trade stock via NS APIs";
+  let tooltipTitle = "Lets you trade stock via NS APIs";
   if (!Player.canAfford(cost)) {
     tooltipTitle = "You do not have enough money";
   }
