@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import {
-  canCreateNewRemoteFileApiConnection,
-  closeRemoteFileApiConnection,
-  getRemoteFileApiConnectionStatus,
-  newRemoteFileApiConnection,
+  canCreateNewRFAConnection,
+  closeRFAConnection,
+  getRFAConnectionStatus,
+  newRFAConnection,
 } from "../../RemoteFileAPI/RemoteFileAPI";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import { Settings } from "../../Settings/Settings";
 import { Router } from "../../ui/GameRoot";
 import { Page } from "../../ui/Router";
-import { RemoteFileApiConnectionEvents, RemoteFileApiConnectionSettingEvents } from "../../RemoteFileAPI/Remote";
+import { RFAConnectionEvents, RFAConnectionSettingEvents } from "../../RemoteFileAPI/Remote";
 import { useRerender } from "../../ui/React/hooks";
 
-export const RemoteFileApiConnectionStatus = ({ showIcon }: { showIcon: boolean }): React.ReactElement => {
-  const [rfaConnectionStatus, setRfaConnectionStatus] = useState(getRemoteFileApiConnectionStatus());
+export const RFAConnectionStatus = ({ showIcon }: { showIcon: boolean }): React.ReactElement => {
+  const [rfaConnectionStatus, setRfaConnectionStatus] = useState(getRFAConnectionStatus());
   const rerender = useRerender();
 
   useEffect(() => {
-    const unsubscriberForRFAEvents = RemoteFileApiConnectionEvents.subscribe((status) => {
+    const unsubscriberForRFAEvents = RFAConnectionEvents.subscribe((status) => {
       setRfaConnectionStatus(status);
     });
-    const unsubscriberForRFASettingEvents = RemoteFileApiConnectionSettingEvents.subscribe(() => {
+    const unsubscriberForRFASettingEvents = RFAConnectionSettingEvents.subscribe(() => {
       rerender();
     });
     return () => {
@@ -34,11 +34,11 @@ export const RemoteFileApiConnectionStatus = ({ showIcon }: { showIcon: boolean 
     Online: { color: Settings.theme.success, instruction: "Click to disconnect" },
     Offline: {
       color: Settings.theme.error,
-      instruction: canCreateNewRemoteFileApiConnection() ? "Click to connect" : "Click to go to the option page",
+      instruction: canCreateNewRFAConnection() ? "Click to connect" : "Click to go to the option page",
     },
     Reconnecting: {
       color: Settings.theme.warning,
-      instruction: canCreateNewRemoteFileApiConnection()
+      instruction: canCreateNewRFAConnection()
         ? "Click to try to connect immediately without waiting"
         : "Click to go to the option page",
     },
@@ -58,12 +58,12 @@ export const RemoteFileApiConnectionStatus = ({ showIcon }: { showIcon: boolean 
           onClick={() => {
             switch (rfaConnectionStatus) {
               case "Online":
-                closeRemoteFileApiConnection();
+                closeRFAConnection();
                 break;
               case "Offline":
               case "Reconnecting":
-                if (canCreateNewRemoteFileApiConnection()) {
-                  newRemoteFileApiConnection();
+                if (canCreateNewRFAConnection()) {
+                  newRFAConnection();
                 } else {
                   Router.toPage(Page.Options, { tab: "Remote API" });
                 }

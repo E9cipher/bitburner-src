@@ -21,7 +21,7 @@ import { Settings } from "./Settings";
  * - Use non-http schemes in the hostname: "ftp://a.com"
  * - etc.
  */
-export function isValidConnectionHostname(hostname: string): Result {
+export function isValidRFAHostname(hostname: string): Result {
   // Return a user-friendly error message.
   if (hostname === "") {
     return {
@@ -67,7 +67,7 @@ export function isValidConnectionHostname(hostname: string): Result {
  *
  * Port 0 is normally invalid, but it is used to disable RFA, so this function treats 0 as valid.
  */
-export function isValidRFAConnectionPortSetting(port: number): Result {
+export function isValidRFAPort(port: number): Result {
   // 0 is not a valid port, but it is a valid configuration value that disables RFA.
   if (!Number.isFinite(port) || port < 0 || port > 65535) {
     return { success: false, message: "Invalid port" };
@@ -79,7 +79,7 @@ export function isValidRFAConnectionPortSetting(port: number): Result {
  * Checks whether the input is a valid RFA port before starting a new connection.
  */
 export function isValidConnectionPort(port: number): boolean {
-  return isValidRFAConnectionPortSetting(port).success && port !== 0;
+  return isValidRFAPort(port).success && port !== 0;
 }
 
 export function loadSettings(saveString: string) {
@@ -133,11 +133,11 @@ export function loadSettings(saveString: string) {
    * The hostname and port of RFA have not been validated properly, so the save data may contain invalid data. In that
    * case, we set them to the default value.
    */
-  if (!isValidConnectionHostname(Settings.RemoteFileApiAddress).success) {
-    Settings.RemoteFileApiAddress = "localhost";
+  if (!isValidRFAHostname(Settings.RFAAddress).success) {
+    Settings.RFAAddress = "localhost";
   }
-  if (!isValidRFAConnectionPortSetting(Settings.RemoteFileApiPort).success) {
-    Settings.RemoteFileApiPort = 0;
+  if (!isValidRFAPort(Settings.RFAPort).success) {
+    Settings.RFAPort = 0;
   }
 
   // Merge Settings.KeyBindings with DefaultKeyBindings.

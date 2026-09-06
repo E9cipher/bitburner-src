@@ -7,7 +7,7 @@ import { TTheme as Theme, ThemeEvents, refreshTheme } from "./Themes/ui/Theme";
 import { LoadingScreen } from "./ui/LoadingScreen";
 import { initElectron } from "./Electron";
 
-import { newRemoteFileApiConnection } from "./RemoteFileAPI/RemoteFileAPI";
+import { newRFAConnection } from "./RemoteFileAPI/RemoteFileAPI";
 
 import "./css/font.css";
 
@@ -34,7 +34,7 @@ styleElement.textContent = `#color-popover {
 }`;
 document.head.appendChild(styleElement);
 
-setTimeout(newRemoteFileApiConnection, 2000);
+setTimeout(newRFAConnection, 2000);
 
 function rerender(): void {
   refreshTheme();
