@@ -573,3 +573,59 @@ export const HelpTexts: Record<string, string[]> = {
     " ",
   ],
 };
+
+/**
+ * A list of all available terminal commands and their descriptions. Follows the following conventions for each sub-array:
+ *
+ * - The first element is the command name
+ * - The second element is a brief description of the command
+ * - The third element links the element to the corresponding {@link HelpTexts} entry for the command
+ * - The fourth element lists all possible *mandatory* arguments for the command
+ * - The fifth element lists all possible *optional* arguments for the command
+ */
+export const TerminalCommands: [name: string, description: string, helpText: string[]][] = [
+  ["alias", "Create or display Terminal aliases", HelpTexts.alias],
+  ["analyze", "Get information about the current machine", HelpTexts.analyze],
+  ["backdoor", "Install a backdoor on the current machine", HelpTexts.backdoor],
+  ["buy", "Purchase a program through the Dark Web", HelpTexts.buy],
+  ["cat", "Display the contents of a file", HelpTexts.cat],
+  ["cd", "Change the current directory", HelpTexts.cd],
+  ["changelog", "Display the changelog", HelpTexts.changelog],
+  ["check", "Print a script's logs to Terminal", HelpTexts.check],
+  ["clear", "Clear all text on the terminal", HelpTexts.clear],
+  ["cls", "See 'clear' command", HelpTexts.cls],
+  ["connect", "Connect to an adjacent server", HelpTexts.connect],
+  ["cp", "Copy a file", HelpTexts.cp],
+  ["download", "Downloads scripts or text files to your computer", HelpTexts.download],
+  ["upload", "Upload scripts or text files from your computer", HelpTexts.upload],
+  ["expr", "Evaluate a mathematical expression", HelpTexts.expr],
+  ["free", "Check the machine's memory (RAM) usage", HelpTexts.free],
+  ["grep", "Search for PATTERN (string/regex) in each FILE and print results to terminal", HelpTexts.grep],
+  ["grow", "Spoof money in a servers' bank account, increasing the amount available", HelpTexts.grow],
+  ["hack", "Hack the current machine", HelpTexts.hack],
+  ["help", "Display this help text, or the help text for a command", HelpTexts.help],
+  ["history", "Display the terminal history", HelpTexts.history],
+  ["home", "Connect to home computer", HelpTexts.home],
+  ["hostname", "Displays the hostname of the machine", HelpTexts.hostname],
+  ["ipaddr", "Displays the IP address of the machine", HelpTexts.ipaddr],
+  ["kill", "Stops the specified script on the current server", HelpTexts.kill],
+  ["killall", "Stops all running scripts on the current machine", HelpTexts.killall],
+  ["ls", "Displays all files on the machine", HelpTexts.ls],
+  ["lscpu", "Displays the number of CPU cores on the machine", HelpTexts.lscpu],
+  ["mem", "Displays the amount of RAM required to run the script", HelpTexts.mem],
+  ["mv", "Move/rename a text or script file", HelpTexts.mv],
+  ["nano", "Text editor - Open up and edit one or more scripts or text files", HelpTexts.nano],
+  ["ps", "Display all scripts that are currently running", HelpTexts.ps],
+  ["rm", "Delete a file from the server", HelpTexts.rm],
+  ["run", "Run a program, a script, or a coding contract", HelpTexts.run],
+  ["scan", "Prints all adjacent network connections", HelpTexts.scan],
+  ["scan-analyze", "Prints info for all servers up to d nodes away", HelpTexts["scan-analyze"]],
+  ["scp", "Copies scripts, text files, or .lit files to a destination server", HelpTexts.scp],
+  ["sudov", "Shows whether you have root access on this computer", HelpTexts.sudov],
+  ["tail", "Displays dynamic logs for the specified script", HelpTexts.tail],
+  ["top", "Displays all running scripts and their RAM usage", HelpTexts.top],
+  ["unalias", "Deletes the specified alias", HelpTexts.unalias],
+  ["vim", "Open and edit one or more scripts or text files in vim mode", HelpTexts.vim],
+  ["weaken", "Reduce the security of the current machine", HelpTexts.weaken],
+  ["wget", "Retrieves code/text from a web server", HelpTexts.wget],
+];
