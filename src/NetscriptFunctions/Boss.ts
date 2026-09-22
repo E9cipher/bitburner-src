@@ -75,7 +75,7 @@ export function NetscriptBoss(): InternalAPI<BossAPI> {
         if (isMeetingAttended(Boss.round, meeting.id)) {
           throw helpers.errorMessage(ctx, `Meeting ${meeting.id} is already attended.`);
         }
-        // Booking a meeting drops anything it conflicts with. See toggleMeeting.
+        /** Booking a meeting drops anything it conflicts with. See {@link toggleMeeting} */
         Boss.round = toggleMeeting(Boss.round, meeting.id);
       },
       cancelMeetingAttendance: (ctx: NetscriptContext, _meetingID): void => {
