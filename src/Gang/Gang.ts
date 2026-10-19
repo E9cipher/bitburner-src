@@ -30,7 +30,7 @@ import { CONSTANTS } from "../Constants";
 export enum RecruitmentResult {
   Success = "Success",
   EmptyName = "Member name cannot be an empty string",
-  DuplicatedName = "This name was used",
+  DuplicatedName = "This name was already used",
   ExceedMaxNumber = "Your gang recruited maximum number of members",
   NotEnoughRespect = "Your gang does not have enough respect to recruit more members",
 }

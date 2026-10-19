@@ -1,44 +1,22 @@
-import { FactionName } from "@enums";
 import { Reviver } from "../utils/GenericReviver";
 import { JsonSchemaValidator } from "../JsonSchema/JsonSchemaValidator";
 import { dialogBoxCreate } from "../ui/React/DialogBox";
+import { GangConstants } from "./data/Constants";
 
 interface GangTerritory {
   power: number;
   territory: number;
 }
 
-export function getDefaultAllGangs() {
-  return {
-    [FactionName.SlumSnakes]: {
+export function getDefaultAllGangs(): Record<string, GangTerritory> {
+  const gangs: Record<string, GangTerritory> = {};
+  for (const factionName of GangConstants.Names) {
+    gangs[factionName] = {
       power: 1,
       territory: 1 / 7,
-    },
-    [FactionName.Tetrads]: {
-      power: 1,
-      territory: 1 / 7,
-    },
-    [FactionName.TheSyndicate]: {
-      power: 1,
-      territory: 1 / 7,
-    },
-    [FactionName.TheDarkArmy]: {
-      power: 1,
-      territory: 1 / 7,
-    },
-    [FactionName.SpeakersForTheDead]: {
-      power: 1,
-      territory: 1 / 7,
-    },
-    [FactionName.NiteSec]: {
-      power: 1,
-      territory: 1 / 7,
-    },
-    [FactionName.TheBlackHand]: {
-      power: 1,
-      territory: 1 / 7,
-    },
-  };
+    };
+  }
+  return gangs;
 }
 
 export let AllGangs: Record<string, GangTerritory> = getDefaultAllGangs();
