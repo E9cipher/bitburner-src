@@ -3,7 +3,7 @@
  * description of the task that member is currently doing.
  */
 import React from "react";
-import { GangMemberTasks } from "../GangMemberTasks";
+import { IGangMemberTasks } from "../GangMemberTasks";
 import { GangMember } from "../GangMember";
 import Typography from "@mui/material/Typography";
 
@@ -12,8 +12,8 @@ interface IProps {
 }
 
 export function TaskDescription(props: IProps): React.ReactElement {
-  const task = GangMemberTasks[props.member.task];
-  const desc = task ? task.desc : GangMemberTasks.Unassigned.desc;
+  const task = IGangMemberTasks[props.member.taskName];
+  const desc = task ? task.desc : IGangMemberTasks.Unassigned.desc;
 
   return <Typography dangerouslySetInnerHTML={{ __html: desc }} />;
 }

@@ -1,14 +1,14 @@
 import type { Gang as IGang, EquipmentStats, GangOtherInfoObject } from "@nsdefs";
 import type { Gang } from "../Gang/Gang";
 import type { GangMember } from "../Gang/GangMember";
-import type { GangMemberTask } from "../Gang/GangMemberTask";
+import type { IGangMemberTask } from "../Gang/GangMemberTask";
 import { type InternalAPI, type NetscriptContext, setRemovedFunctions } from "../Netscript/APIWrapper";
 
 import { GangPromise, RecruitmentResult } from "../Gang/Gang";
 import { Player } from "@player";
 import { FactionName } from "@enums";
 import { AllGangs } from "../Gang/AllGangs";
-import { GangMemberTasks } from "../Gang/GangMemberTasks";
+import { IGangMemberTasks } from "../Gang/GangMemberTasks";
 import { GangMemberUpgrades } from "../Gang/GangMemberUpgrades";
 import { helpers } from "../Netscript/NetscriptHelpers";
 import { getEnumHelper } from "../utils/EnumHelper";
@@ -28,8 +28,8 @@ export function NetscriptGang(): InternalAPI<IGang> {
     throw helpers.errorMessage(ctx, `Invalid gang member: '${name}'`);
   };
 
-  const getGangTask = function (ctx: NetscriptContext, name: string): GangMemberTask {
-    const task = GangMemberTasks[name];
+  const getGangTask = function (ctx: NetscriptContext, name: string): IGangMemberTask {
+    const task = IGangMemberTasks[name];
     if (!task) {
       throw helpers.errorMessage(ctx, `Invalid task: '${name}'`);
     }
@@ -117,42 +117,42 @@ export function NetscriptGang(): InternalAPI<IGang> {
       const member = getGangMember(ctx, memberName);
       return {
         name: member.name,
-        task: member.task,
+        task: member.taskName,
         earnedRespect: member.earnedRespect,
-        hack: member.hack,
-        str: member.str,
-        def: member.def,
-        dex: member.dex,
-        agi: member.agi,
-        cha: member.cha,
+        hack: member.stats.hack,
+        str: member.stats.str,
+        def: member.stats.def,
+        dex: member.stats.dex,
+        agi: member.stats.agi,
+        cha: member.stats.cha,
 
-        hack_exp: member.hack_exp,
-        str_exp: member.str_exp,
-        def_exp: member.def_exp,
-        dex_exp: member.dex_exp,
-        agi_exp: member.agi_exp,
-        cha_exp: member.cha_exp,
+        hack_exp: member.statsExp.hack_exp,
+        str_exp: member.statsExp.str_exp,
+        def_exp: member.statsExp.def_exp,
+        dex_exp: member.statsExp.dex_exp,
+        agi_exp: member.statsExp.agi_exp,
+        cha_exp: member.statsExp.cha_exp,
 
-        hack_mult: member.hack_mult,
-        str_mult: member.str_mult,
-        def_mult: member.def_mult,
-        dex_mult: member.dex_mult,
-        agi_mult: member.agi_mult,
-        cha_mult: member.cha_mult,
+        hack_mult: member.statsMults.hack_mult,
+        str_mult: member.statsMults.str_mult,
+        def_mult: member.statsMults.def_mult,
+        dex_mult: member.statsMults.dex_mult,
+        agi_mult: member.statsMults.agi_mult,
+        cha_mult: member.statsMults.cha_mult,
 
-        hack_asc_mult: member.calculateAscensionMult(member.hack_asc_points),
-        str_asc_mult: member.calculateAscensionMult(member.str_asc_points),
-        def_asc_mult: member.calculateAscensionMult(member.def_asc_points),
-        dex_asc_mult: member.calculateAscensionMult(member.dex_asc_points),
-        agi_asc_mult: member.calculateAscensionMult(member.agi_asc_points),
-        cha_asc_mult: member.calculateAscensionMult(member.cha_asc_points),
+        hack_asc_mult: member.calculateAscensionMult(member.ascensionPoints.hack_asc_points),
+        str_asc_mult: member.calculateAscensionMult(member.ascensionPoints.str_asc_points),
+        def_asc_mult: member.calculateAscensionMult(member.ascensionPoints.def_asc_points),
+        dex_asc_mult: member.calculateAscensionMult(member.ascensionPoints.dex_asc_points),
+        agi_asc_mult: member.calculateAscensionMult(member.ascensionPoints.agi_asc_points),
+        cha_asc_mult: member.calculateAscensionMult(member.ascensionPoints.cha_asc_points),
 
-        hack_asc_points: member.hack_asc_points,
-        str_asc_points: member.str_asc_points,
-        def_asc_points: member.def_asc_points,
-        dex_asc_points: member.dex_asc_points,
-        agi_asc_points: member.agi_asc_points,
-        cha_asc_points: member.cha_asc_points,
+        hack_asc_points: member.ascensionPoints.hack_asc_points,
+        str_asc_points: member.ascensionPoints.str_asc_points,
+        def_asc_points: member.ascensionPoints.def_asc_points,
+        dex_asc_points: member.ascensionPoints.dex_asc_points,
+        agi_asc_points: member.ascensionPoints.agi_asc_points,
+        cha_asc_points: member.ascensionPoints.cha_asc_points,
 
         upgrades: member.upgrades.slice(),
         augmentations: member.augmentations.slice(),
@@ -194,7 +194,7 @@ export function NetscriptGang(): InternalAPI<IGang> {
     },
     setMemberTask: (ctx, _memberName, _taskName) => {
       const memberName = helpers.string(ctx, "memberName", _memberName);
-      const taskName = helpers.string(ctx, "taskName", _taskName);
+      const taskName = getEnumHelper("GangTaskNameEnum").nsGetMember(ctx, _taskName, "taskName");
       const gang = getGang(ctx);
       const member = getGangMember(ctx, memberName);
       if (!gang.getAllTaskNames().includes(taskName)) {

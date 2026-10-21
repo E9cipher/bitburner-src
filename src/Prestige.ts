@@ -134,12 +134,12 @@ export function prestigeAugmentation(): void {
     if (faction) joinFaction(faction);
     for (const m of gang.members) {
       const results = m.getPostInstallPoints();
-      m.hack_asc_points = results.hack;
-      m.str_asc_points = results.str;
-      m.def_asc_points = results.def;
-      m.dex_asc_points = results.dex;
-      m.agi_asc_points = results.agi;
-      m.cha_asc_points = results.cha;
+      m.ascensionPoints.hack_asc_points = results.hack;
+      m.ascensionPoints.str_asc_points = results.str;
+      m.ascensionPoints.def_asc_points = results.def;
+      m.ascensionPoints.dex_asc_points = results.dex;
+      m.ascensionPoints.agi_asc_points = results.agi;
+      m.ascensionPoints.cha_asc_points = results.cha;
     }
   }
 

@@ -399,7 +399,12 @@ export const achievements: Record<AchievementId, Achievement> = {
       Player.gang !== null &&
       Player.gang.members.some(
         (m) =>
-          m.hack >= 10000 || m.str >= 10000 || m.def >= 10000 || m.dex >= 10000 || m.agi >= 10000 || m.cha >= 10000,
+          m.stats.hack >= 10000 ||
+          m.stats.str >= 10000 ||
+          m.stats.def >= 10000 ||
+          m.stats.dex >= 10000 ||
+          m.stats.agi >= 10000 ||
+          m.stats.cha >= 10000,
       ),
   },
   CORPORATION: {

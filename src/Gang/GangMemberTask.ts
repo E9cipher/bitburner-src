@@ -1,7 +1,8 @@
+import { GangTaskName } from "../ScriptEditor/NetscriptDefinitions";
 import { ITaskParams, ITerritory } from "./ITaskParams";
 
-export class GangMemberTask {
-  name: string;
+export class IGangMemberTask {
+  name: GangTaskName;
   desc: string;
 
   isHacking: boolean;
@@ -23,7 +24,7 @@ export class GangMemberTask {
   territory: ITerritory;
 
   // Defines tasks that Gang Members can work on
-  constructor(name: string, desc: string, isHacking: boolean, isCombat: boolean, params: ITaskParams) {
+  constructor(name: GangTaskName, desc: string, isHacking: boolean, isCombat: boolean, params: ITaskParams) {
     this.name = name;
     this.desc = desc;
 
@@ -50,7 +51,7 @@ export class GangMemberTask {
         this.hackWeight + this.strWeight + this.defWeight + this.dexWeight + this.agiWeight + this.chaWeight,
       ) != 100
     ) {
-      console.error(`GangMemberTask ${this.name} weights do not add up to 100`);
+      console.error(`IGangMemberTask ${this.name} weights do not add up to 100`);
     }
 
     // 1 - 100

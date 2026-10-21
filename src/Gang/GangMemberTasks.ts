@@ -1,10 +1,10 @@
-import { gangMemberTasksMetadata } from "./data/tasks";
-import { GangMemberTask } from "./GangMemberTask";
+import { IGangMemberTasksMetadata } from "./data/tasks";
+import { IGangMemberTask } from "./GangMemberTask";
 
-export const GangMemberTasks: Record<string, GangMemberTask> = {};
+export const IGangMemberTasks: Record<string, IGangMemberTask> = {};
 
 (function () {
-  gangMemberTasksMetadata.forEach((e) => {
-    GangMemberTasks[e.name] = new GangMemberTask(e.name, e.desc, e.isHacking, e.isCombat, e.params);
+  IGangMemberTasksMetadata.forEach((e) => {
+    IGangMemberTasks[e.name] = new IGangMemberTask(e.name, e.desc, e.isHacking, e.isCombat, e.params);
   });
 })();

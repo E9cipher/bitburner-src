@@ -3,10 +3,10 @@ import { GangTaskNameEnum } from "../Enums";
 import { ITaskParams } from "../ITaskParams";
 
 /**
- * Defines the parameters that can be used to initialize and describe a GangMemberTask
+ * Defines the parameters that can be used to initialize and describe a IGangMemberTask
  * (defined in Gang.js)
  */
-interface IGangMemberTaskMetadata {
+interface IIGangMemberTaskMetadata {
   /** Description of the task */
   desc: string;
 
@@ -27,16 +27,16 @@ interface IGangMemberTaskMetadata {
 }
 
 /**
- * Array of metadata for all Gang Member tasks. Used to construct the global GangMemberTask
+ * Array of metadata for all Gang Member tasks. Used to construct the global IGangMemberTask
  * objects in Gang.js
  */
-export const gangMemberTasksMetadata: IGangMemberTaskMetadata[] = [
+export const IGangMemberTasksMetadata: IIGangMemberTaskMetadata[] = [
   {
     desc: "This gang member is currently idle",
     isCombat: true,
     isHacking: true,
     name: GangTaskNameEnum.Unassigned,
-    params: { hackWeight: 100 }, // This is just to get by the weight check in the GangMemberTask constructor
+    params: { hackWeight: 100 }, // This is just to get by the weight check in the IGangMemberTask constructor
   },
   {
     desc: "Assign this gang member to create and distribute ransomware<br><br>Earns money - Slightly increases respect - Slightly increases wanted level",

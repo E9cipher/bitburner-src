@@ -1,4 +1,4 @@
-export interface IMults {
+export interface IGangMemberMults {
   hack?: number;
   str?: number;
   def?: number;
@@ -22,7 +22,7 @@ export enum UpgradeType {
  */
 interface IGangMemberUpgradeMetadata {
   cost: number;
-  mults: IMults;
+  mults: IGangMemberMults;
   name: string;
   upgType: UpgradeType;
 }

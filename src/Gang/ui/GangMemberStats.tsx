@@ -25,12 +25,12 @@ export function GangMemberStats(props: IProps): React.ReactElement {
   const { classes } = useStyles();
 
   const asc = {
-    hack: props.member.calculateAscensionMult(props.member.hack_asc_points),
-    str: props.member.calculateAscensionMult(props.member.str_asc_points),
-    def: props.member.calculateAscensionMult(props.member.def_asc_points),
-    dex: props.member.calculateAscensionMult(props.member.dex_asc_points),
-    agi: props.member.calculateAscensionMult(props.member.agi_asc_points),
-    cha: props.member.calculateAscensionMult(props.member.cha_asc_points),
+    hack: props.member.calculateAscensionMult(props.member.ascensionPoints.hack_asc_points),
+    str: props.member.calculateAscensionMult(props.member.ascensionPoints.str_asc_points),
+    def: props.member.calculateAscensionMult(props.member.ascensionPoints.def_asc_points),
+    dex: props.member.calculateAscensionMult(props.member.ascensionPoints.dex_asc_points),
+    agi: props.member.calculateAscensionMult(props.member.ascensionPoints.agi_asc_points),
+    cha: props.member.calculateAscensionMult(props.member.ascensionPoints.cha_asc_points),
   };
 
   const gang = useGang();
@@ -46,23 +46,23 @@ export function GangMemberStats(props: IProps): React.ReactElement {
       <Tooltip
         title={
           <Typography>
-            Hk: x{formatMultiplier(props.member.hack_mult * asc.hack)}(x
-            {formatMultiplier(props.member.hack_mult)} Eq, x{formatMultiplier(asc.hack)} Asc)
+            Hk: x{formatMultiplier(props.member.statsMults.hack_mult * asc.hack)}(x
+            {formatMultiplier(props.member.statsMults.hack_mult)} Eq, x{formatMultiplier(asc.hack)} Asc)
             <br />
-            St: x{formatMultiplier(props.member.str_mult * asc.str)}
-            (x{formatMultiplier(props.member.str_mult)} Eq, x{formatMultiplier(asc.str)} Asc)
+            St: x{formatMultiplier(props.member.statsMults.str_mult * asc.str)}
+            (x{formatMultiplier(props.member.statsMults.str_mult)} Eq, x{formatMultiplier(asc.str)} Asc)
             <br />
-            Df: x{formatMultiplier(props.member.def_mult * asc.def)}
-            (x{formatMultiplier(props.member.def_mult)} Eq, x{formatMultiplier(asc.def)} Asc)
+            Df: x{formatMultiplier(props.member.statsMults.def_mult * asc.def)}
+            (x{formatMultiplier(props.member.statsMults.def_mult)} Eq, x{formatMultiplier(asc.def)} Asc)
             <br />
-            Dx: x{formatMultiplier(props.member.dex_mult * asc.dex)}
-            (x{formatMultiplier(props.member.dex_mult)} Eq, x{formatMultiplier(asc.dex)} Asc)
+            Dx: x{formatMultiplier(props.member.statsMults.dex_mult * asc.dex)}
+            (x{formatMultiplier(props.member.statsMults.dex_mult)} Eq, x{formatMultiplier(asc.dex)} Asc)
             <br />
-            Ag: x{formatMultiplier(props.member.agi_mult * asc.agi)}
-            (x{formatMultiplier(props.member.agi_mult)} Eq, x{formatMultiplier(asc.agi)} Asc)
+            Ag: x{formatMultiplier(props.member.statsMults.agi_mult * asc.agi)}
+            (x{formatMultiplier(props.member.statsMults.agi_mult)} Eq, x{formatMultiplier(asc.agi)} Asc)
             <br />
-            Ch: x{formatMultiplier(props.member.cha_mult * asc.cha)}
-            (x{formatMultiplier(props.member.cha_mult)} Eq, x{formatMultiplier(asc.cha)} Asc)
+            Ch: x{formatMultiplier(props.member.statsMults.cha_mult * asc.cha)}
+            (x{formatMultiplier(props.member.statsMults.cha_mult)} Eq, x{formatMultiplier(asc.cha)} Asc)
           </Typography>
         }
       >
@@ -71,32 +71,32 @@ export function GangMemberStats(props: IProps): React.ReactElement {
             <StatsRow
               name="Hacking"
               color={Settings.theme.hack}
-              data={{ level: props.member.hack, exp: props.member.hack_exp }}
+              data={{ level: props.member.stats.hack, exp: props.member.statsExp.hack_exp }}
             />
             <StatsRow
               name="Strength"
               color={Settings.theme.combat}
-              data={{ level: props.member.str, exp: props.member.str_exp }}
+              data={{ level: props.member.stats.str, exp: props.member.statsExp.str_exp }}
             />
             <StatsRow
               name="Defense"
               color={Settings.theme.combat}
-              data={{ level: props.member.def, exp: props.member.def_exp }}
+              data={{ level: props.member.stats.def, exp: props.member.statsExp.def_exp }}
             />
             <StatsRow
               name="Dexterity"
               color={Settings.theme.combat}
-              data={{ level: props.member.dex, exp: props.member.dex_exp }}
+              data={{ level: props.member.stats.dex, exp: props.member.statsExp.dex_exp }}
             />
             <StatsRow
               name="Agility"
               color={Settings.theme.combat}
-              data={{ level: props.member.agi, exp: props.member.agi_exp }}
+              data={{ level: props.member.stats.agi, exp: props.member.statsExp.agi_exp }}
             />
             <StatsRow
               name="Charisma"
               color={Settings.theme.cha}
-              data={{ level: props.member.cha, exp: props.member.cha_exp }}
+              data={{ level: props.member.stats.cha, exp: props.member.statsExp.cha_exp }}
             />
             <TableRow>
               <TableCell classes={{ root: classes.cellNone }}>

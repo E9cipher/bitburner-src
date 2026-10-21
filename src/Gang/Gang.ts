@@ -15,7 +15,7 @@ import { getRandomIntInclusive } from "../utils/helpers/getRandomIntInclusive";
 
 import { GangMemberUpgrade } from "./GangMemberUpgrade";
 import { GangConstants } from "./data/Constants";
-import { GangMemberTasks } from "./GangMemberTasks";
+import { IGangMemberTasks } from "./GangMemberTasks";
 import { IAscensionResult } from "./IAscensionResult";
 
 import { AllGangs, getClashWinChance } from "./AllGangs";
@@ -24,7 +24,7 @@ import { GangMember } from "./GangMember";
 import { WorkerScript } from "../Netscript/WorkerScript";
 import { Player } from "@player";
 import { PowerMultiplier } from "./data/power";
-import { FactionName } from "@enums";
+import { FactionName, GangTaskNameEnum } from "@enums";
 import { CONSTANTS } from "../Constants";
 
 export enum RecruitmentResult {
@@ -292,10 +292,10 @@ export class Gang {
       const member = this.members[i];
 
       // Only members assigned to Territory Warfare can die
-      if (member.task !== "Territory Warfare") continue;
+      if (member.taskName !== GangTaskNameEnum.TerritoryWarfare) continue;
 
       // Chance to die is decreased based on defense
-      const modifiedDeathChance = baseDeathChance / Math.pow(member.def, 0.6);
+      const modifiedDeathChance = baseDeathChance / Math.pow(member.stats.def, 0.6);
       if (Math.random() < modifiedDeathChance) {
         this.killMember(member);
       }
@@ -358,11 +358,11 @@ export class Gang {
     return this.respect / (this.respect + this.wanted);
   }
 
-  //Calculates power GAIN, which is added onto the Gang's existing power
+  // Calculates power GAIN, which is added onto the Gang's existing power
   calculatePower(): number {
     let memberTotal = 0;
     for (let i = 0; i < this.members.length; ++i) {
-      if (this.members[i].task !== "Territory Warfare") continue;
+      if (this.members[i].taskName !== GangTaskNameEnum.TerritoryWarfare) continue;
       memberTotal += this.members[i].calculatePower();
     }
     return 0.015 * Math.max(0.002, this.getTerritory()) * memberTotal;
@@ -417,10 +417,10 @@ export class Gang {
 
   /** Returns only valid tasks for this gang. Excludes 'Unassigned' */
   getAllTaskNames(): string[] {
-    return Object.keys(GangMemberTasks).filter((taskName: string) => {
-      const task = GangMemberTasks[taskName];
+    return Object.keys(IGangMemberTasks).filter((taskName: string) => {
+      const task = IGangMemberTasks[taskName];
       if (task == null) return false;
-      if (task.name === "Unassigned") return false;
+      if (task.name === GangTaskNameEnum.Unassigned) return false;
       // yes you need both checks
       return this.isHackingGang === task.isHacking || !this.isHackingGang === task.isCombat;
     });

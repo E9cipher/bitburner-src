@@ -30,7 +30,7 @@ import { influenceStockThroughServerHack } from "../StockMarket/PlayerInfluencin
 import { type PortNumber, PortHandle } from "../NetscriptPort";
 import { FormulaGang } from "../Gang/formulas/formulas";
 import { GangMember } from "../Gang/GangMember";
-import { GangMemberTask } from "../Gang/GangMemberTask";
+import { IGangMemberTask } from "../Gang/GangMemberTask";
 import { RunningScript } from "../Script/RunningScript";
 import { ScriptIdentifier } from "./ScriptIdentifier";
 import { findRunningScripts, findRunningScriptByPid } from "../Script/ScriptHelpers";
@@ -763,10 +763,13 @@ function gangMember(ctx: NetscriptContext, m: unknown): GangMember {
   return m as GangMember;
 }
 
-function gangTask(ctx: NetscriptContext, t: unknown): GangMemberTask {
-  const error = missingKey(new GangMemberTask("", "", false, false, { hackWeight: 100 }), t);
-  if (error) throw errorMessage(ctx, `task should be a GangMemberTask.\n${error}`, "TYPE");
-  return t as GangMemberTask;
+function gangTask(ctx: NetscriptContext, t: unknown): IGangMemberTask {
+  const error = missingKey(
+    new IGangMemberTask("" as ConstructorParameters<typeof IGangMemberTask>[0], "", false, false, { hackWeight: 100 }),
+    t,
+  );
+  if (error) throw errorMessage(ctx, `task should be a IGangMemberTask.\n${error}`, "TYPE");
+  return t as IGangMemberTask;
 }
 
 export function filePath(ctx: NetscriptContext, argName: string, filename: unknown): FilePath {

@@ -1,4 +1,4 @@
-import { IMults, UpgradeType } from "./data/upgrades";
+import { IGangMemberMults, UpgradeType } from "./data/upgrades";
 import { formatPercent, FormatsHaveChanged } from "../ui/formatNumber";
 
 export class GangMemberUpgrade {
@@ -6,9 +6,9 @@ export class GangMemberUpgrade {
   cost: number;
   type: UpgradeType;
   desc: string;
-  mults: IMults;
+  mults: IGangMemberMults;
 
-  constructor(name = "", cost = 0, type: UpgradeType = UpgradeType.Weapon, mults: IMults = {}) {
+  constructor(name = "", cost = 0, type: UpgradeType = UpgradeType.Weapon, mults: IGangMemberMults = {}) {
     this.name = name;
     this.cost = cost;
     this.type = type;

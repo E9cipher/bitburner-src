@@ -1,6 +1,6 @@
 import { currentNodeMults } from "../../BitNode/BitNodeMultipliers";
 import { GangMember } from "../GangMember";
-import { GangMemberTask } from "../GangMemberTask";
+import { IGangMemberTask } from "../GangMemberTask";
 
 export interface FormulaGang {
   respect: number;
@@ -12,15 +12,15 @@ export function calculateWantedPenalty(gang: FormulaGang): number {
   return gang.respect / (gang.respect + gang.wantedLevel);
 }
 
-export function calculateRespectGain(gang: FormulaGang, member: GangMember, task: GangMemberTask): number {
+export function calculateRespectGain(gang: FormulaGang, member: GangMember, task: IGangMemberTask): number {
   if (task.baseRespect === 0) return 0;
   let statWeight =
-    (task.hackWeight / 100) * member.hack +
-    (task.strWeight / 100) * member.str +
-    (task.defWeight / 100) * member.def +
-    (task.dexWeight / 100) * member.dex +
-    (task.agiWeight / 100) * member.agi +
-    (task.chaWeight / 100) * member.cha;
+    (task.hackWeight / 100) * member.stats.hack +
+    (task.strWeight / 100) * member.stats.str +
+    (task.defWeight / 100) * member.stats.def +
+    (task.dexWeight / 100) * member.stats.dex +
+    (task.agiWeight / 100) * member.stats.agi +
+    (task.chaWeight / 100) * member.stats.cha;
   statWeight -= 4 * task.difficulty;
   if (statWeight <= 0) return 0;
   const territoryMult = Math.max(0.005, Math.pow(gang.territory * 100, task.territory.respect) / 100);
@@ -30,15 +30,15 @@ export function calculateRespectGain(gang: FormulaGang, member: GangMember, task
   return Math.pow(11 * task.baseRespect * statWeight * territoryMult * respectMult, territoryPenalty);
 }
 
-export function calculateWantedLevelGain(gang: FormulaGang, member: GangMember, task: GangMemberTask): number {
+export function calculateWantedLevelGain(gang: FormulaGang, member: GangMember, task: IGangMemberTask): number {
   if (task.baseWanted === 0) return 0;
   let statWeight =
-    (task.hackWeight / 100) * member.hack +
-    (task.strWeight / 100) * member.str +
-    (task.defWeight / 100) * member.def +
-    (task.dexWeight / 100) * member.dex +
-    (task.agiWeight / 100) * member.agi +
-    (task.chaWeight / 100) * member.cha;
+    (task.hackWeight / 100) * member.stats.hack +
+    (task.strWeight / 100) * member.stats.str +
+    (task.defWeight / 100) * member.stats.def +
+    (task.dexWeight / 100) * member.stats.dex +
+    (task.agiWeight / 100) * member.stats.agi +
+    (task.chaWeight / 100) * member.stats.cha;
   statWeight -= 3.5 * task.difficulty;
   if (statWeight <= 0) return 0;
   const territoryMult = Math.max(0.005, Math.pow(gang.territory * 100, task.territory.wanted) / 100);
@@ -53,15 +53,15 @@ export function calculateWantedLevelGain(gang: FormulaGang, member: GangMember, 
   return Math.min(100, calc);
 }
 
-export function calculateMoneyGain(gang: FormulaGang, member: GangMember, task: GangMemberTask): number {
+export function calculateMoneyGain(gang: FormulaGang, member: GangMember, task: IGangMemberTask): number {
   if (task.baseMoney === 0) return 0;
   let statWeight =
-    (task.hackWeight / 100) * member.hack +
-    (task.strWeight / 100) * member.str +
-    (task.defWeight / 100) * member.def +
-    (task.dexWeight / 100) * member.dex +
-    (task.agiWeight / 100) * member.agi +
-    (task.chaWeight / 100) * member.cha;
+    (task.hackWeight / 100) * member.stats.hack +
+    (task.strWeight / 100) * member.stats.str +
+    (task.defWeight / 100) * member.stats.def +
+    (task.dexWeight / 100) * member.stats.dex +
+    (task.agiWeight / 100) * member.stats.agi +
+    (task.chaWeight / 100) * member.stats.cha;
 
   statWeight -= 3.2 * task.difficulty;
   if (statWeight <= 0) return 0;

@@ -11,6 +11,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { GangMember } from "../GangMember";
+import { GangTaskNameEnum } from "../Enums";
+import { GangTaskName } from "../../ScriptEditor/NetscriptDefinitions";
 
 interface IProps {
   member: GangMember;
@@ -19,15 +21,15 @@ interface IProps {
 
 export function TaskSelector(props: IProps): React.ReactElement {
   const gang = useGang();
-  const [currentTask, setCurrentTask] = useState(props.member.task);
+  const [currentTask, setCurrentTask] = useState(props.member.taskName);
 
   const contextMember = gang.members.find((member) => member.name == props.member.name);
-  if (contextMember && contextMember.task != currentTask) {
-    setCurrentTask(contextMember.task);
+  if (contextMember && contextMember.taskName != currentTask) {
+    setCurrentTask(contextMember.taskName);
   }
 
   function onChange(event: SelectChangeEvent): void {
-    const task = event.target.value;
+    const task = event.target.value as GangTaskName; // Hummmm
     props.member.assignToTask(task);
     setCurrentTask(task);
     props.onTaskChange();
@@ -38,8 +40,8 @@ export function TaskSelector(props: IProps): React.ReactElement {
   return (
     <Box>
       <Select onChange={onChange} value={currentTask} sx={{ width: "100%" }}>
-        <MenuItem key={0} value={"Unassigned"}>
-          Unassigned
+        <MenuItem key={0} value={GangTaskNameEnum.Unassigned}>
+          {GangTaskNameEnum.Unassigned}
         </MenuItem>
         {tasks.map((task: string, i: number) => (
           <MenuItem key={i + 1} value={task}>

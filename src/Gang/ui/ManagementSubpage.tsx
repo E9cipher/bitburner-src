@@ -3,6 +3,7 @@ import { GangStats } from "./GangStats";
 import { GangMemberList } from "./GangMemberList";
 import { useGang } from "./Context";
 import { Typography } from "@mui/material";
+import { GangTaskNameEnum } from "../Enums";
 
 /** React Component for the subpage that manages gang members, the main page. */
 export function ManagementSubpage(): React.ReactElement {
@@ -17,8 +18,8 @@ export function ManagementSubpage(): React.ReactElement {
         If a gang member is not earning much money or respect, the task you assigned might be too difficult. Consider
         assigning an easier task, or training them. Tasks closer to the top of the dropdown list are generally easier.
         Alternatively, low production might be a sign that your wanted level is too high. Consider doing{" "}
-        {gang.isHackingGang ? "Ethical Hacking or " : ""}
-        Vigilante Justice to lower your wanted level.
+        {gang.isHackingGang ? `${GangTaskNameEnum.EthicalHacking} or ` : ""}
+        {GangTaskNameEnum.VigilanteJustice} to lower your wanted level.
         <br />
         <br />
         Installing Augmentations does NOT reset progress with your Gang, however ascension multipliers will decrease
