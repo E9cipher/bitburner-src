@@ -295,7 +295,7 @@ export class Gang {
       if (member.taskName !== GangTaskNameEnum.TerritoryWarfare) continue;
 
       // Chance to die is decreased based on defense
-      const modifiedDeathChance = baseDeathChance / Math.pow(member.stats.def, 0.6);
+      const modifiedDeathChance = baseDeathChance / Math.pow(member.def, 0.6);
       if (Math.random() < modifiedDeathChance) {
         this.killMember(member);
       }

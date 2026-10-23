@@ -19,49 +19,13 @@ import { GangMemberExpGain, GangTaskName } from "@nsdefs";
 import { convertV2GangEquipmentNames } from "../utils/APIBreaks/3.0.0";
 import { GangTaskNameEnum } from "./Enums";
 
-interface IGangMemberMults {
+interface IMults {
   hack: number;
   str: number;
   def: number;
   dex: number;
   agi: number;
   cha: number;
-}
-
-interface IGangMemberStats {
-  hack: number;
-  str: number;
-  def: number;
-  dex: number;
-  agi: number;
-  cha: number;
-}
-
-interface IGangMemberStatsExp {
-  hack_exp: number;
-  str_exp: number;
-  def_exp: number;
-  dex_exp: number;
-  agi_exp: number;
-  cha_exp: number;
-}
-
-interface IGangMemberStatsMults {
-  hack_mult: number;
-  str_mult: number;
-  def_mult: number;
-  dex_mult: number;
-  agi_mult: number;
-  cha_mult: number;
-}
-
-interface IGangMemberAscensionPoints {
-  hack_asc_points: number;
-  str_asc_points: number;
-  def_asc_points: number;
-  dex_asc_points: number;
-  agi_asc_points: number;
-  cha_asc_points: number;
 }
 
 export class GangMember {
@@ -70,41 +34,33 @@ export class GangMember {
 
   earnedRespect = 0;
 
-  stats: IGangMemberStats = {
-    hack: 1,
-    str: 1,
-    def: 1,
-    dex: 1,
-    agi: 1,
-    cha: 1,
-  };
+  hack = 1;
+  str = 1;
+  def = 1;
+  dex = 1;
+  agi = 1;
+  cha = 1;
 
-  statsMults: IGangMemberStatsMults = {
-    hack_mult: 1,
-    str_mult: 1,
-    def_mult: 1,
-    dex_mult: 1,
-    agi_mult: 1,
-    cha_mult: 1,
-  };
+  hack_exp = 0;
+  str_exp = 0;
+  def_exp = 0;
+  dex_exp = 0;
+  agi_exp = 0;
+  cha_exp = 0;
 
-  statsExp: IGangMemberStatsExp = {
-    hack_exp: 0,
-    str_exp: 0,
-    def_exp: 0,
-    dex_exp: 0,
-    agi_exp: 0,
-    cha_exp: 0,
-  };
+  hack_mult = 1;
+  str_mult = 1;
+  def_mult = 1;
+  dex_mult = 1;
+  agi_mult = 1;
+  cha_mult = 1;
 
-  ascensionPoints: IGangMemberAscensionPoints = {
-    hack_asc_points: 0,
-    str_asc_points: 0,
-    def_asc_points: 0,
-    dex_asc_points: 0,
-    agi_asc_points: 0,
-    cha_asc_points: 0,
-  };
+  hack_asc_points = 0;
+  str_asc_points = 0;
+  def_asc_points = 0;
+  dex_asc_points = 0;
+  agi_asc_points = 0;
+  cha_asc_points = 0;
 
   upgrades: string[] = []; // Names of upgrades
   augmentations: string[] = []; // Names of augmentations only
@@ -122,34 +78,16 @@ export class GangMember {
   }
 
   updateSkillLevels(): void {
-    this.stats.hack = this.calculateSkill(
-      this.statsExp.hack_exp,
-      this.statsMults.hack_mult * this.calculateAscensionMult(this.ascensionPoints.hack_asc_points),
-    );
-    this.stats.str = this.calculateSkill(
-      this.statsExp.str_exp,
-      this.statsMults.str_mult * this.calculateAscensionMult(this.ascensionPoints.str_asc_points),
-    );
-    this.stats.def = this.calculateSkill(
-      this.statsExp.def_exp,
-      this.statsMults.def_mult * this.calculateAscensionMult(this.ascensionPoints.def_asc_points),
-    );
-    this.stats.dex = this.calculateSkill(
-      this.statsExp.dex_exp,
-      this.statsMults.dex_mult * this.calculateAscensionMult(this.ascensionPoints.dex_asc_points),
-    );
-    this.stats.agi = this.calculateSkill(
-      this.statsExp.agi_exp,
-      this.statsMults.agi_mult * this.calculateAscensionMult(this.ascensionPoints.agi_asc_points),
-    );
-    this.stats.cha = this.calculateSkill(
-      this.statsExp.cha_exp,
-      this.statsMults.cha_mult * this.calculateAscensionMult(this.ascensionPoints.cha_asc_points),
-    );
+    this.hack = this.calculateSkill(this.hack_exp, this.hack_mult * this.calculateAscensionMult(this.hack_asc_points));
+    this.str = this.calculateSkill(this.str_exp, this.str_mult * this.calculateAscensionMult(this.str_asc_points));
+    this.def = this.calculateSkill(this.def_exp, this.def_mult * this.calculateAscensionMult(this.def_asc_points));
+    this.dex = this.calculateSkill(this.dex_exp, this.dex_mult * this.calculateAscensionMult(this.dex_asc_points));
+    this.agi = this.calculateSkill(this.agi_exp, this.agi_mult * this.calculateAscensionMult(this.agi_asc_points));
+    this.cha = this.calculateSkill(this.cha_exp, this.cha_mult * this.calculateAscensionMult(this.cha_asc_points));
   }
 
   calculatePower(): number {
-    return (this.stats.hack + this.stats.str + this.stats.def + this.stats.dex + this.stats.agi + this.stats.cha) / 95;
+    return (this.hack + this.str + this.def + this.dex + this.agi + this.cha) / 95;
   }
 
   assignToTask(taskName: GangTaskName): boolean {
@@ -202,14 +140,14 @@ export class GangMember {
     return calculateMoneyGain(g, this, task);
   }
 
-  expMult(): IGangMemberMults {
+  expMult(): IMults {
     return {
-      hack: (this.statsMults.hack_mult - 1) / 4 + 1,
-      str: (this.statsMults.str_mult - 1) / 4 + 1,
-      def: (this.statsMults.def_mult - 1) / 4 + 1,
-      dex: (this.statsMults.dex_mult - 1) / 4 + 1,
-      agi: (this.statsMults.agi_mult - 1) / 4 + 1,
-      cha: (this.statsMults.cha_mult - 1) / 4 + 1,
+      hack: (this.hack_mult - 1) / 4 + 1,
+      str: (this.str_mult - 1) / 4 + 1,
+      def: (this.def_mult - 1) / 4 + 1,
+      dex: (this.dex_mult - 1) / 4 + 1,
+      agi: (this.agi_mult - 1) / 4 + 1,
+      cha: (this.cha_mult - 1) / 4 + 1,
     };
   }
 
@@ -238,37 +176,37 @@ export class GangMember {
       (task.hackWeight / weightDivisor) *
       difficultyPerCycles *
       expMult.hack *
-      this.calculateAscensionMult(this.ascensionPoints.hack_asc_points);
+      this.calculateAscensionMult(this.hack_asc_points);
 
     expValues.str_exp +=
       (task.strWeight / weightDivisor) *
       difficultyPerCycles *
       expMult.str *
-      this.calculateAscensionMult(this.ascensionPoints.str_asc_points);
+      this.calculateAscensionMult(this.str_asc_points);
 
     expValues.def_exp +=
       (task.defWeight / weightDivisor) *
       difficultyPerCycles *
       expMult.def *
-      this.calculateAscensionMult(this.ascensionPoints.def_asc_points);
+      this.calculateAscensionMult(this.def_asc_points);
 
     expValues.dex_exp +=
       (task.dexWeight / weightDivisor) *
       difficultyPerCycles *
       expMult.dex *
-      this.calculateAscensionMult(this.ascensionPoints.dex_asc_points);
+      this.calculateAscensionMult(this.dex_asc_points);
 
     expValues.agi_exp +=
       (task.agiWeight / weightDivisor) *
       difficultyPerCycles *
       expMult.agi *
-      this.calculateAscensionMult(this.ascensionPoints.agi_asc_points);
+      this.calculateAscensionMult(this.agi_asc_points);
 
     expValues.cha_exp +=
       (task.chaWeight / weightDivisor) *
       difficultyPerCycles *
       expMult.cha *
-      this.calculateAscensionMult(this.ascensionPoints.cha_asc_points);
+      this.calculateAscensionMult(this.cha_asc_points);
 
     return expValues;
   }
@@ -281,12 +219,12 @@ export class GangMember {
       return;
     }
 
-    this.statsExp.hack_exp += gains.hack_exp;
-    this.statsExp.str_exp += gains.str_exp;
-    this.statsExp.def_exp += gains.def_exp;
-    this.statsExp.dex_exp += gains.dex_exp;
-    this.statsExp.agi_exp += gains.agi_exp;
-    this.statsExp.cha_exp += gains.cha_exp;
+    this.hack_exp += gains.hack_exp;
+    this.str_exp += gains.str_exp;
+    this.def_exp += gains.def_exp;
+    this.dex_exp += gains.dex_exp;
+    this.agi_exp += gains.agi_exp;
+    this.cha_exp += gains.cha_exp;
   }
 
   earnRespect(numCycles = 1, gang: Gang): number {
@@ -295,14 +233,14 @@ export class GangMember {
     return earnedRespect;
   }
 
-  getGainedAscensionPoints(): IGangMemberMults {
+  getGainedAscensionPoints(): IMults {
     return {
-      hack: calculateAscensionPointsGain(this.statsExp.hack_exp),
-      str: calculateAscensionPointsGain(this.statsExp.str_exp),
-      def: calculateAscensionPointsGain(this.statsExp.def_exp),
-      dex: calculateAscensionPointsGain(this.statsExp.dex_exp),
-      agi: calculateAscensionPointsGain(this.statsExp.agi_exp),
-      cha: calculateAscensionPointsGain(this.statsExp.cha_exp),
+      hack: calculateAscensionPointsGain(this.hack_exp),
+      str: calculateAscensionPointsGain(this.str_exp),
+      def: calculateAscensionPointsGain(this.def_exp),
+      dex: calculateAscensionPointsGain(this.dex_exp),
+      agi: calculateAscensionPointsGain(this.agi_exp),
+      cha: calculateAscensionPointsGain(this.cha_exp),
     };
   }
 
@@ -311,30 +249,30 @@ export class GangMember {
     return points.hack > 0 || points.str > 0 || points.def > 0 || points.dex > 0 || points.agi > 0 || points.cha > 0;
   }
 
-  getCurrentAscensionMults(): IGangMemberMults {
+  getCurrentAscensionMults(): IMults {
     return {
-      hack: this.calculateAscensionMult(this.ascensionPoints.hack_asc_points),
-      str: this.calculateAscensionMult(this.ascensionPoints.str_asc_points),
-      def: this.calculateAscensionMult(this.ascensionPoints.def_asc_points),
-      dex: this.calculateAscensionMult(this.ascensionPoints.dex_asc_points),
-      agi: this.calculateAscensionMult(this.ascensionPoints.agi_asc_points),
-      cha: this.calculateAscensionMult(this.ascensionPoints.cha_asc_points),
+      hack: this.calculateAscensionMult(this.hack_asc_points),
+      str: this.calculateAscensionMult(this.str_asc_points),
+      def: this.calculateAscensionMult(this.def_asc_points),
+      dex: this.calculateAscensionMult(this.dex_asc_points),
+      agi: this.calculateAscensionMult(this.agi_asc_points),
+      cha: this.calculateAscensionMult(this.cha_asc_points),
     };
   }
 
-  getAscensionMultsAfterAscend(): IGangMemberMults {
+  getAscensionMultsAfterAscend(): IMults {
     const points = this.getGainedAscensionPoints();
     return {
-      hack: this.calculateAscensionMult(this.ascensionPoints.hack_asc_points + points.hack),
-      str: this.calculateAscensionMult(this.ascensionPoints.str_asc_points + points.str),
-      def: this.calculateAscensionMult(this.ascensionPoints.def_asc_points + points.def),
-      dex: this.calculateAscensionMult(this.ascensionPoints.dex_asc_points + points.dex),
-      agi: this.calculateAscensionMult(this.ascensionPoints.agi_asc_points + points.agi),
-      cha: this.calculateAscensionMult(this.ascensionPoints.cha_asc_points + points.cha),
+      hack: this.calculateAscensionMult(this.hack_asc_points + points.hack),
+      str: this.calculateAscensionMult(this.str_asc_points + points.str),
+      def: this.calculateAscensionMult(this.def_asc_points + points.def),
+      dex: this.calculateAscensionMult(this.dex_asc_points + points.dex),
+      agi: this.calculateAscensionMult(this.agi_asc_points + points.agi),
+      cha: this.calculateAscensionMult(this.cha_asc_points + points.cha),
     };
   }
 
-  getAscensionResults(): IGangMemberMults {
+  getAscensionResults(): IMults {
     const postAscend = this.getAscensionMultsAfterAscend();
     const preAscend = this.getCurrentAscensionMults();
 
@@ -348,47 +286,47 @@ export class GangMember {
     };
   }
 
-  getPostInstallPoints(): IGangMemberMults {
+  getPostInstallPoints(): IMults {
     return {
-      hack: this.ascensionPoints.hack_asc_points * GangConstants.InstallAscensionPenalty,
-      str: this.ascensionPoints.str_asc_points * GangConstants.InstallAscensionPenalty,
-      def: this.ascensionPoints.def_asc_points * GangConstants.InstallAscensionPenalty,
-      dex: this.ascensionPoints.dex_asc_points * GangConstants.InstallAscensionPenalty,
-      agi: this.ascensionPoints.agi_asc_points * GangConstants.InstallAscensionPenalty,
-      cha: this.ascensionPoints.cha_asc_points * GangConstants.InstallAscensionPenalty,
+      hack: this.hack_asc_points * GangConstants.InstallAscensionPenalty,
+      str: this.str_asc_points * GangConstants.InstallAscensionPenalty,
+      def: this.def_asc_points * GangConstants.InstallAscensionPenalty,
+      dex: this.dex_asc_points * GangConstants.InstallAscensionPenalty,
+      agi: this.agi_asc_points * GangConstants.InstallAscensionPenalty,
+      cha: this.cha_asc_points * GangConstants.InstallAscensionPenalty,
     };
   }
 
   ascend(): IAscensionResult {
     const res = this.getAscensionResults();
     const points = this.getGainedAscensionPoints();
-    this.ascensionPoints.hack_asc_points += points.hack;
-    this.ascensionPoints.str_asc_points += points.str;
-    this.ascensionPoints.def_asc_points += points.def;
-    this.ascensionPoints.dex_asc_points += points.dex;
-    this.ascensionPoints.agi_asc_points += points.agi;
-    this.ascensionPoints.cha_asc_points += points.cha;
+    this.hack_asc_points += points.hack;
+    this.str_asc_points += points.str;
+    this.def_asc_points += points.def;
+    this.dex_asc_points += points.dex;
+    this.agi_asc_points += points.agi;
+    this.cha_asc_points += points.cha;
 
     // Remove upgrades. Then re-calculate multipliers and stats
     this.upgrades.length = 0;
-    this.statsMults.hack_mult = 1;
-    this.statsMults.str_mult = 1;
-    this.statsMults.def_mult = 1;
-    this.statsMults.dex_mult = 1;
-    this.statsMults.agi_mult = 1;
-    this.statsMults.cha_mult = 1;
+    this.hack_mult = 1;
+    this.str_mult = 1;
+    this.def_mult = 1;
+    this.dex_mult = 1;
+    this.agi_mult = 1;
+    this.cha_mult = 1;
     for (let i = 0; i < this.augmentations.length; ++i) {
       const aug = GangMemberUpgrades[this.augmentations[i]];
       this.applyUpgrade(aug);
     }
 
     // Clear exp and recalculate stats
-    this.statsExp.hack_exp = 0;
-    this.statsExp.str_exp = 0;
-    this.statsExp.def_exp = 0;
-    this.statsExp.dex_exp = 0;
-    this.statsExp.agi_exp = 0;
-    this.statsExp.cha_exp = 0;
+    this.hack_exp = 0;
+    this.str_exp = 0;
+    this.def_exp = 0;
+    this.dex_exp = 0;
+    this.agi_exp = 0;
+    this.cha_exp = 0;
     this.updateSkillLevels();
 
     const respectToDeduct = this.earnedRespect;
@@ -405,12 +343,12 @@ export class GangMember {
   }
 
   applyUpgrade(upg: GangMemberUpgrade): void {
-    if (upg.mults.str != null) this.statsMults.str_mult *= upg.mults.str;
-    if (upg.mults.def != null) this.statsMults.def_mult *= upg.mults.def;
-    if (upg.mults.dex != null) this.statsMults.dex_mult *= upg.mults.dex;
-    if (upg.mults.agi != null) this.statsMults.agi_mult *= upg.mults.agi;
-    if (upg.mults.cha != null) this.statsMults.cha_mult *= upg.mults.cha;
-    if (upg.mults.hack != null) this.statsMults.hack_mult *= upg.mults.hack;
+    if (upg.mults.str != null) this.str_mult *= upg.mults.str;
+    if (upg.mults.def != null) this.def_mult *= upg.mults.def;
+    if (upg.mults.dex != null) this.dex_mult *= upg.mults.dex;
+    if (upg.mults.agi != null) this.agi_mult *= upg.mults.agi;
+    if (upg.mults.cha != null) this.cha_mult *= upg.mults.cha;
+    if (upg.mults.hack != null) this.hack_mult *= upg.mults.hack;
   }
 
   buyUpgrade(upg: GangMemberUpgrade): boolean {
