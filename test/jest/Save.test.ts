@@ -347,7 +347,7 @@ function checkTestSaveData(isDataLoadedFromSaveFile: boolean) {
     throw new Error("Gang object is null");
   }
   const member = gang.members[0];
-  expect(member.task).toBe("Train Combat");
+  expect(member.taskName).toBe("Train Combat");
   expect(member.str_exp).toBeGreaterThan(1);
   expect(member.str_mult).toBeGreaterThan(1);
   expect(member.upgrades[0]).toBe("Baseball Bat");
