@@ -1,4 +1,4 @@
-import type { Gang as IGang, EquipmentStats, GangOtherInfoObject } from "@nsdefs";
+import type { Gang as IGang, EquipmentStats, GangOtherInfoObject, GangFactionName } from "@nsdefs";
 import type { Gang } from "../Gang/Gang";
 import type { GangMember } from "../Gang/GangMember";
 import type { GangMemberTask } from "../Gang/GangMemberTask";
@@ -6,7 +6,7 @@ import { type InternalAPI, type NetscriptContext, setRemovedFunctions } from "..
 
 import { GangPromise, RecruitmentResult } from "../Gang/Gang";
 import { Player } from "@player";
-import { FactionName } from "@enums";
+import { FactionNameEnum } from "@enums";
 import { AllGangs } from "../Gang/AllGangs";
 import { GangMemberTasks } from "../Gang/GangMemberTasks";
 import { GangMemberUpgrades } from "../Gang/GangMemberUpgrades";
@@ -39,14 +39,14 @@ export function NetscriptGang(): InternalAPI<IGang> {
 
   const gangFunctions: InternalAPI<IGang> = {
     createGang: (ctx, _faction) => {
-      const faction = getEnumHelper("FactionName").nsGetMember(ctx, _faction);
+      const faction = getEnumHelper("FactionNameEnum").nsGetMember(ctx, _faction);
       const checkResult = canCreateGang(faction);
       if (!checkResult.success) {
         helpers.log(ctx, () => checkResult.message);
         return false;
       }
 
-      const isHacking = faction === FactionName.NiteSec || faction === FactionName.TheBlackHand;
+      const isHacking = faction === FactionNameEnum.NiteSec || faction === FactionNameEnum.TheBlackHand;
       Player.startGang(faction, isHacking);
       return true;
     },
@@ -104,8 +104,8 @@ export function NetscriptGang(): InternalAPI<IGang> {
     },
     getAllGangInformation: (ctx) => {
       getGang(ctx);
-      const cpy: Record<string, GangOtherInfoObject> = {};
-      for (const gang of Object.keys(AllGangs)) {
+      const cpy = {} as Record<GangFactionName, GangOtherInfoObject>;
+      for (const gang of Object.keys(AllGangs) as GangFactionName[]) {
         cpy[gang] = Object.assign({}, AllGangs[gang]);
       }
 
@@ -326,7 +326,7 @@ export function NetscriptGang(): InternalAPI<IGang> {
       }
     },
     getChanceToWinClash: (ctx, _otherGang) => {
-      const otherGang = helpers.string(ctx, "otherGang", _otherGang);
+      const otherGang = getEnumHelper("GangFactionNameEnum").nsGetMember(ctx, _otherGang);
       const gang = getGang(ctx);
       if (AllGangs[otherGang] == null) {
         throw helpers.errorMessage(ctx, `Invalid gang: ${otherGang}`);

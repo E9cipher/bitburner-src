@@ -24,9 +24,10 @@ import { GangMember } from "./GangMember";
 import { WorkerScript } from "../Netscript/WorkerScript";
 import { Player } from "@player";
 import { PowerMultiplier } from "./data/power";
-import { FactionName } from "@enums";
+import { FactionNameEnum } from "@enums";
 import { CONSTANTS } from "../Constants";
 import { calculateReputationGain } from "./formulas/formulas";
+import { GangFactionName } from "@nsdefs";
 
 export enum RecruitmentResult {
   Success = "Success",
@@ -39,7 +40,7 @@ export enum RecruitmentResult {
 export const GangPromise: PromisePair<number> = { promise: null, resolve: null };
 
 export class Gang {
-  facName: FactionName;
+  facName: GangFactionName;
   members: GangMember[];
   wanted: number;
   respect: number;
@@ -62,7 +63,7 @@ export class Gang {
 
   notifyMemberDeath: boolean;
 
-  constructor(facName = FactionName.SlumSnakes, hacking = false) {
+  constructor(facName = FactionNameEnum.SlumSnakes, hacking = false) {
     this.facName = facName;
     this.members = [];
     this.wanted = 1;
@@ -174,7 +175,7 @@ export class Gang {
   /** Process Territory and Power
    * @param numCycles The number of cycles to process. */
   processTerritoryAndPowerGains(numCycles: number): void {
-    function calculateTerritoryGain(winGang: string, loseGang: string): number {
+    function calculateTerritoryGain(winGang: GangFactionName, loseGang: GangFactionName): number {
       const powerBonus = Math.max(1, 1 + Math.log(AllGangs[winGang].power / AllGangs[loseGang].power) / Math.log(50));
       const gains = Math.min(AllGangs[loseGang].territory, powerBonus * 0.0001 * (Math.random() + 0.5));
       return gains;
@@ -186,7 +187,7 @@ export class Gang {
 
     // Process power first
     const gangName = this.facName;
-    for (const name of Object.keys(AllGangs)) {
+    for (const name of Object.keys(AllGangs) as GangFactionName[]) {
       if (Object.hasOwn(AllGangs, name)) {
         if (name == gangName) {
           AllGangs[name].power += this.calculatePower();

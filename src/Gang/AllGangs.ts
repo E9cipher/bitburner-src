@@ -1,47 +1,47 @@
-import { FactionName } from "@enums";
+import { FactionNameEnum } from "@enums";
 import { Reviver } from "../utils/GenericReviver";
 import { JsonSchemaValidator } from "../JsonSchema/JsonSchemaValidator";
 import { dialogBoxCreate } from "../ui/React/DialogBox";
-
+import { GangFactionName } from "@nsdefs";
 interface GangTerritory {
   power: number;
   territory: number;
 }
 
-export function getDefaultAllGangs() {
+export function getDefaultAllGangs(): Record<GangFactionName, GangTerritory> {
   return {
-    [FactionName.SlumSnakes]: {
+    [FactionNameEnum.SlumSnakes]: {
       power: 1,
       territory: 1 / 7,
     },
-    [FactionName.Tetrads]: {
+    [FactionNameEnum.Tetrads]: {
       power: 1,
       territory: 1 / 7,
     },
-    [FactionName.TheSyndicate]: {
+    [FactionNameEnum.TheSyndicate]: {
       power: 1,
       territory: 1 / 7,
     },
-    [FactionName.TheDarkArmy]: {
+    [FactionNameEnum.TheDarkArmy]: {
       power: 1,
       territory: 1 / 7,
     },
-    [FactionName.SpeakersForTheDead]: {
+    [FactionNameEnum.SpeakersForTheDead]: {
       power: 1,
       territory: 1 / 7,
     },
-    [FactionName.NiteSec]: {
+    [FactionNameEnum.NiteSec]: {
       power: 1,
       territory: 1 / 7,
     },
-    [FactionName.TheBlackHand]: {
+    [FactionNameEnum.TheBlackHand]: {
       power: 1,
       territory: 1 / 7,
     },
   };
 }
 
-export let AllGangs: Record<string, GangTerritory> = getDefaultAllGangs();
+export let AllGangs: Record<GangFactionName, GangTerritory> = getDefaultAllGangs();
 
 export function resetGangs(): void {
   AllGangs = getDefaultAllGangs();
@@ -70,7 +70,7 @@ export function loadAllGangs(saveString: string): void {
   AllGangs = allGangsData;
 }
 
-export function getClashWinChance(thisGang: string, otherGang: string): number {
+export function getClashWinChance(thisGang: GangFactionName, otherGang: GangFactionName): number {
   const thisGangPower = AllGangs[thisGang].power;
   const otherGangPower = AllGangs[otherGang].power;
   return thisGangPower / (thisGangPower + otherGangPower);

@@ -930,6 +930,18 @@ export type GangMemberUpgradeNameEnumType = {
 /** @public */
 type GangMemberUpgradeName = _ValueOf<GangMemberUpgradeNameEnumType>;
 
+type GangFactionNameEnumType = {
+  SlumSnakes: FactionNameEnumType["SlumSnakes"];
+  Tetrads: FactionNameEnumType["Tetrads"];
+  TheSyndicate: FactionNameEnumType["TheSyndicate"];
+  TheDarkArmy: FactionNameEnumType["TheDarkArmy"];
+  SpeakersForTheDead: FactionNameEnumType["SpeakersForTheDead"];
+  NiteSec: FactionNameEnumType["NiteSec"];
+  TheBlackHand: FactionNameEnumType["TheBlackHand"];
+};
+
+type GangFactionName = _ValueOf<GangFactionNameEnumType>;
+
 /**
  * Gang general info.
  * @public

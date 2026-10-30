@@ -68,3 +68,13 @@ export const GangMemberUpgradeNameEnum = {
   DataJack: AugmentationName.DataJack,
   GrapheneBoneLacings: AugmentationName.GrapheneBoneLacings,
 } as const;
+
+export const GangFactionNameEnum = {
+  SlumSnakes: "Slum Snakes",
+  Tetrads: "Tetrads",
+  TheSyndicate: "The Syndicate",
+  TheDarkArmy: "The Dark Army",
+  SpeakersForTheDead: "Speakers for the Dead",
+  NiteSec: "NiteSec",
+  TheBlackHand: "The Black Hand",
+} as const;

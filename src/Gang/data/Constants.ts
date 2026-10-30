@@ -1,5 +1,6 @@
 import { CONSTANTS } from "../../Constants";
-import { FactionName } from "@enums";
+import { GangFactionName } from "@nsdefs";
+import { GangFactionNameEnum } from "../Enums";
 
 export const GangConstants = {
   /** Number of members that can be recruited with 0 respect. */
@@ -16,14 +17,14 @@ export const GangConstants = {
   InstallAscensionPenalty: 0.95,
   // Names of possible Gangs
   Names: [
-    FactionName.SlumSnakes,
-    FactionName.Tetrads,
-    FactionName.TheSyndicate,
-    FactionName.TheDarkArmy,
-    FactionName.SpeakersForTheDead,
-    FactionName.NiteSec,
-    FactionName.TheBlackHand,
-  ] as FactionName[],
+    GangFactionNameEnum.SlumSnakes,
+    GangFactionNameEnum.Tetrads,
+    GangFactionNameEnum.TheSyndicate,
+    GangFactionNameEnum.TheDarkArmy,
+    GangFactionNameEnum.SpeakersForTheDead,
+    GangFactionNameEnum.NiteSec,
+    GangFactionNameEnum.TheBlackHand,
+  ] as GangFactionName[],
   GangKarmaRequirement: -54000,
   /** Normal number of game cycles processed at once (2 seconds) */
   minCyclesToProcess: 2000 / CONSTANTS.MilliPerCycle,
