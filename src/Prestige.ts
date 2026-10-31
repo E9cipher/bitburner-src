@@ -1,4 +1,4 @@
-import { AugmentationName, CityName, CompletedProgramName, FactionName, LiteratureName, CompanyName } from "@enums";
+import { AugmentationName, CityName, CompletedProgramName, LiteratureName, CompanyName, FactionNameEnum } from "@enums";
 import { Augmentations } from "./Augmentation/Augmentations";
 import { initBitNodeMultipliers } from "./BitNode/BitNode";
 import { Companies } from "./Company/Companies";
@@ -34,6 +34,7 @@ import { getDarkscapeNavigator } from "./DarkNet/effects/effects";
 import { CodingContractEventEmitter } from "./CodingContract/CodingContractEventEmitter";
 import { showLiterature } from "./Literature/LiteratureHelpers";
 import { prestigeDarknetState } from "./DarkNet/models/DarknetState";
+import { FactionName } from "@nsdefs";
 
 const BitNode8StartingMoney = 250e6;
 function delayedDialog(message: string, canBeDismissedEasily = true) {
@@ -182,10 +183,10 @@ export function prestigeAugmentation(): void {
 
   // Bitnode 13: Church of the Machine God
   if (Player.hasAugmentation(AugmentationName.StaneksGift1, true)) {
-    joinFaction(Factions[FactionName.ChurchOfTheMachineGod]);
+    joinFaction(Factions[FactionNameEnum.ChurchOfTheMachineGod]);
   } else if (Player.bitNodeN !== 13) {
     if (Player.augmentations.some((a) => a.name !== AugmentationName.NeuroFluxGovernor)) {
-      Factions[FactionName.ChurchOfTheMachineGod].isBanned = true;
+      Factions[FactionNameEnum.ChurchOfTheMachineGod].isBanned = true;
     }
   }
 
@@ -301,7 +302,7 @@ export function prestigeSourceFile(isFlume: boolean): void {
   // BitNode 10: Digital Carbon
   if (Player.bitNodeN === 10) {
     delayedDialog(
-      `Seek out ${FactionName.TheCovenant} if you'd like to purchase a new sleeve or two! And see what ${CompanyName.VitaLife} in ${CityName.NewTokyo} has to offer for you`,
+      `Seek out ${FactionNameEnum.TheCovenant} if you'd like to purchase a new sleeve or two! And see what ${CompanyName.VitaLife} in ${CityName.NewTokyo} has to offer for you`,
       false,
     );
   }

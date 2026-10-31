@@ -8,7 +8,7 @@ import { Player } from "@player";
 import type { Multipliers } from "@nsdefs";
 import { prestigeAugmentation } from "../Prestige";
 
-import { FactionName } from "@enums";
+import { FactionNameEnum } from "@enums";
 import { Factions } from "../Faction/Factions";
 
 import { dialogBoxCreate } from "../ui/React/DialogBox";
@@ -83,8 +83,8 @@ export function applyAugmentation(aug: PlayerOwnedAugmentation, effectOnly = fal
   }
 
   // CotMG is unavailable after accepting any other aug
-  if (!Player.factions.includes(FactionName.ChurchOfTheMachineGod) && aug.name !== AugmentationName.NeuroFluxGovernor) {
-    Factions[FactionName.ChurchOfTheMachineGod].isBanned = true;
+  if (!Player.factions.includes(FactionNameEnum.ChurchOfTheMachineGod) && aug.name !== AugmentationName.NeuroFluxGovernor) {
+    Factions[FactionNameEnum.ChurchOfTheMachineGod].isBanned = true;
   }
 
   // Recalculate skill levels after applying multipliers.

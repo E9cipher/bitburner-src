@@ -1,4 +1,4 @@
-import type { BitNodeOptions, Player as IPlayer } from "@nsdefs";
+import type { BitNodeOptions, Player as IPlayer, FactionName } from "@nsdefs";
 import type { PlayerAchievement } from "../../Achievements/Achievements";
 import type { Bladeburner } from "../../Bladeburner/Bladeburner";
 import type { Corporation } from "../../Corporation/Corporation";
@@ -18,7 +18,7 @@ import * as serverMethods from "./PlayerObjectServerMethods";
 import * as workMethods from "./PlayerObjectWorkMethods";
 
 import { setPlayer } from "@player";
-import { CompanyName, FactionName, JobName, LocationName } from "@enums";
+import { CompanyName, JobName, LocationName } from "@enums";
 import { HashManager } from "../../Hacknet/HashManager";
 import { type MoneySource, MoneySourceTracker } from "../../utils/MoneySourceTracker";
 import { Generic_fromJSON, type IReviverValue } from "../../utils/JSONReviver";

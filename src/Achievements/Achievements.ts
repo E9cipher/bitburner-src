@@ -4,7 +4,7 @@ import {
   CityName,
   CompletedProgramName,
   CorpUnlockName,
-  FactionName,
+  FactionNameEnum,
   IndustryType,
 } from "@enums";
 import { Skills } from "../Bladeburner/data/Skills";
@@ -131,37 +131,37 @@ export const achievements: Record<AchievementId, Achievement> = {
   CYBERSEC: {
     ...achievementData.CYBERSEC,
     Icon: "CSEC",
-    Condition: () => Player.factions.includes(FactionName.CyberSec),
+    Condition: () => Player.factions.includes(FactionNameEnum.CyberSec),
   },
   NITESEC: {
     ...achievementData.NITESEC,
     Icon: "NiteSec",
-    Condition: () => Player.factions.includes(FactionName.NiteSec),
+    Condition: () => Player.factions.includes(FactionNameEnum.NiteSec),
   },
   THE_BLACK_HAND: {
     ...achievementData.THE_BLACK_HAND,
     Icon: "TBH",
-    Condition: () => Player.factions.includes(FactionName.TheBlackHand),
+    Condition: () => Player.factions.includes(FactionNameEnum.TheBlackHand),
   },
   BITRUNNERS: {
     ...achievementData.BITRUNNERS,
     Icon: "bitrunners",
-    Condition: () => Player.factions.includes(FactionName.BitRunners),
+    Condition: () => Player.factions.includes(FactionNameEnum.BitRunners),
   },
   DAEDALUS: {
     ...achievementData.DAEDALUS,
     Icon: "daedalus",
-    Condition: () => Player.factions.includes(FactionName.Daedalus),
+    Condition: () => Player.factions.includes(FactionNameEnum.Daedalus),
   },
   THE_COVENANT: {
     ...achievementData.THE_COVENANT,
     Icon: "thecovenant",
-    Condition: () => Player.factions.includes(FactionName.TheCovenant),
+    Condition: () => Player.factions.includes(FactionNameEnum.TheCovenant),
   },
   ILLUMINATI: {
     ...achievementData.ILLUMINATI,
     Icon: "illuminati",
-    Condition: () => Player.factions.includes(FactionName.Illuminati),
+    Condition: () => Player.factions.includes(FactionNameEnum.Illuminati),
   },
   "BRUTESSH.EXE": {
     ...achievementData["BRUTESSH.EXE"],
